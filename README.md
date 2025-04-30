@@ -1,7 +1,8 @@
 1. 建立虛擬環境並啟動
 ```
 python -m venv venv
-source venv/bin/activate  -- for mac venv\Scripts\activate     -- for Windows
+source venv/bin/activate  -- for mac
+venv\Scripts\activate     -- for Windows
 ```
 2. 安裝套件
 ```
