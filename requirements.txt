@@ -3,4 +3,5 @@ uvicorn[standard]
 motor
 pydantic
 jinja2
-python-dotenv 
+python-dotenv
+supabase-py 
