@@ -1,7 +1,14 @@
-fastapi
-uvicorn[standard]
-motor
-pydantic
-jinja2
-python-dotenv
-supabase-py 
+fastapi==0.104.1
+uvicorn[standard]==0.23.2
+python-jose==3.3.0
+python-multipart==0.0.6
+pydantic==2.4.2
+pydantic[email]==2.4.2
+bcrypt==4.0.1
+python-dotenv==1.0.0
+supabase==2.15.1
+
+# Test dependencies
+pytest==7.4.0
+pytest-asyncio==0.21.1
+httpx>=0.26.0 
