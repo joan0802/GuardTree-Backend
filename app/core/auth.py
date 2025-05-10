@@ -34,6 +34,7 @@ async def authenticate_user(email: str, password: str) -> Optional[Dict[str, Any
     Authenticate a user
     """
     user = await UserRepository.get_user_by_email(email)
+    print(user)
     if not user:
         return None
     if not UserRepository.verify_password(password, user["password"]):
@@ -51,10 +52,12 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> Dict[str, Any
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        user_id: int = payload.get("sub")
-        if user_id is None:
+        print(payload.get("sub"))
+        user_id_str = payload.get("sub")
+        if user_id_str is None:
             raise credentials_exception
-    except JWTError:
+        user_id = int(user_id_str)
+    except (JWTError, ValueError):
         raise credentials_exception
     
     user = await UserRepository.get_user_by_id(user_id)

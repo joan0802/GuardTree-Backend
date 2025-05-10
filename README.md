@@ -8,7 +8,7 @@ A FastAPI-based backend using Supabase as the database.
 2. Create a `.env` file in the root directory with the following variables:
    ```
    SUPABASE_URL=your_supabase_url
-   SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+   SUPABASE_KEY=your_supabase_service_role_key
    JWT_SECRET_KEY=your_secret_key
    ```
    

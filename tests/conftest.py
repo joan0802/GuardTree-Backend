@@ -105,7 +105,7 @@ def admin_token() -> str:
     """
     Create a JWT token for admin user
     """
-    token_data = {"sub": 1}  # ID of the admin user
+    token_data = {"sub": str(1)}  # ID of the admin user as a string
     expire = datetime.utcnow() + timedelta(minutes=30)
     token_data.update({"exp": expire})
     return jwt.encode(token_data, SECRET_KEY, algorithm=ALGORITHM)
@@ -116,7 +116,7 @@ def user_token() -> str:
     """
     Create a JWT token for regular user
     """
-    token_data = {"sub": 2}  # ID of the regular user
+    token_data = {"sub": str(2)}  # ID of the regular user as a string
     expire = datetime.utcnow() + timedelta(minutes=30)
     token_data.update({"exp": expire})
     return jwt.encode(token_data, SECRET_KEY, algorithm=ALGORITHM) 
