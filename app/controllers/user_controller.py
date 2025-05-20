@@ -25,6 +25,37 @@ async def create_user(
     """
     return await UserService.create_user(user_data)
 
+# Regular user routes - specific paths first
+@router.get("/me", response_model=User)
+async def get_current_user_info(
+    current_user: Dict[str, Any] = Depends(get_current_user)
+):
+    """
+    Get current user's information
+    """
+    return await UserService.get_user_by_id(current_user["id"])
+
+@router.put("/me", response_model=User)
+async def update_current_user(
+    user_data: UserUpdate,
+    current_user: Dict[str, Any] = Depends(get_current_user)
+):
+    """
+    Update current user's information
+    """
+    return await UserService.update_user(current_user["id"], user_data)
+
+@router.put("/me/password")
+async def update_current_user_password(
+    password_data: UserUpdatePassword,
+    current_user: Dict[str, Any] = Depends(get_current_user)
+):
+    """
+    Update current user's password
+    """
+    return await UserService.update_password(current_user["id"], password_data)
+
+# Admin routes with parameters - put after specific paths
 @router.get("/{user_id}", response_model=User)
 async def get_user(
     user_id: int,
@@ -54,25 +85,4 @@ async def delete_user(
     """
     Delete a user (admin only)
     """
-    return await UserService.delete_user(user_id)
-
-# Regular user routes
-@router.put("/me", response_model=User)
-async def update_current_user(
-    user_data: UserUpdate,
-    current_user: Dict[str, Any] = Depends(get_current_user)
-):
-    """
-    Update current user's information
-    """
-    return await UserService.update_user(current_user["id"], user_data)
-
-@router.put("/me/password")
-async def update_current_user_password(
-    password_data: UserUpdatePassword,
-    current_user: Dict[str, Any] = Depends(get_current_user)
-):
-    """
-    Update current user's password
-    """
-    return await UserService.update_password(current_user["id"], password_data) 
+    return await UserService.delete_user(user_id) 
