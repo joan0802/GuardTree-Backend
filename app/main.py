@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.controllers import user_controller, auth_controller
+from app.controllers import user_controller, auth_controller, llm_controller
 
 app = FastAPI(title="GuardTree API", version="1.0")
 
@@ -17,6 +17,7 @@ app.add_middleware(
 # Include routers
 app.include_router(auth_controller.router)
 app.include_router(user_controller.router)
+app.include_router(llm_controller.router)
 
 @app.get("/")
 async def root():
