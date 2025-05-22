@@ -22,13 +22,28 @@ class LLMRepository:
 
 
     @staticmethod
-    async def save_analysis_result(filled_form_id: int, suggestions: str, summary: str, form_type: str) -> Dict[str, Any]:
+    async def save_analysis_result(filled_form_id: int, suggestions: dict, summary: dict, question_field: str) -> Dict[str, Any]:
         """Insert LLM analysis result into database"""
         data = {
             "filled_form_id": filled_form_id,
             "created_at": datetime.now().isoformat(),
             "suggestions": suggestions,
             "summary": summary,
-            "form_type": form_type
+            "question_field": question_field
         }
         return await SupabaseService.create(LLMRepository.ANALYSIS_TABLE, data)
+    
+    
+
+    @staticmethod
+    async def get_analysis_result(filled_form_id: int, question_field: str) -> Optional[Any]:
+        """Fetch the value of a specific question field by filled_form_id and question_field"""
+        filters = {
+            "filled_form_id": filled_form_id,
+            "question_field": question_field
+        }
+        return await SupabaseService.query_field_by_conditions(
+            LLMRepository.ANALYSIS_TABLE,
+            filters,
+            question_field
+        )

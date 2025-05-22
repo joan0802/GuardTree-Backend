@@ -30,45 +30,72 @@ class LLMService:
         """
         對 LLM 呼叫並取得回應
         """
-        response_iter = llm_pipeline(prompt)
-        result = ""
-        for response in response_iter:
-            result += response['generated_text']
-        return result
+        # response_iter = llm_pipeline(prompt)
+        # result = ""
+        # for response in response_iter:
+        #     result += response['generated_text']
+        # return result
+        response = llm_pipeline(prompt)
+        return response
 
     @staticmethod
-    async def analyze_case(form_id: int) -> dict:
+    async def analyze_case(case_id: int, year: str, question_field: str) -> dict:
         """
         執行所有分析項目，回傳 dict 結果，並寫回資料庫
         """
         # 撈資料
-        form_data = await LLMRepository.get_form_by_id(form_id)
+        form_data = await LLMRepository.get_question_value(case_id=case_id, year=year, question_field=question_field)
         if not form_data:
-            raise ValueError(f"Form with id {form_id} not found")
-
-        results = {}
+            raise ValueError(f"Form not found")
+        
+        # 檢查是否已經分析過
+        existing_result = await LLMRepository.get_analysis_result(
+            filled_form_id=form_data["id"],
+            question_field=question_field
+        )
+        if existing_result:
+            return existing_result
 
         # 智能摘要
         summary_prompt = LLMService.build_prompt(form_data, "summary")
-        results["summary"] = LLMService.run_llm(summary_prompt)
+        summary_result = LLMService.run_llm(summary_prompt)
 
         # 主要優勢
         strength_prompt = LLMService.build_prompt(form_data, "strength")
-        results["strengths"] = LLMService.run_llm(strength_prompt)
+        strengths_result = LLMService.run_llm(strength_prompt)
 
         # 需要關注
         concern_prompt = LLMService.build_prompt(form_data, "concern")
-        results["concerns"] = LLMService.run_llm(concern_prompt)
+        concerns_result = LLMService.run_llm(concern_prompt)
 
         # 優先改善項目
         priority_prompt = LLMService.build_prompt(form_data, "priority")
-        results["priority_item"] = LLMService.run_llm(priority_prompt)
+        priority_result = LLMService.run_llm(priority_prompt)
 
         # 策略建議
         strategy_prompt = LLMService.build_prompt(form_data, "strategy")
-        results["strategy"] = LLMService.run_llm(strategy_prompt)
+        strategy_result = LLMService.run_llm(strategy_prompt)
 
-        # 最後把分析結果寫回資料庫
-        await LLMRepository.update_analysis_result(form_id, str(results))
+        # 整理成json格式
+        results = {
+            "summary": {
+                "summary": summary_result,
+                "strengths": strengths_result,
+                "concerns": concerns_result,
+                "priority_item": priority_result
+            },
+            "suggestions": {
+                "strategy": strategy_result
+            }
+        }
+
+        # 寫回資料庫
+        await LLMRepository.save_analysis_result(
+            filled_form_id=form_data["id"],
+            suggestions=results["suggestions"],
+            summary=results["summary"],
+            question_field=question_field
+        )
 
         return results
+
