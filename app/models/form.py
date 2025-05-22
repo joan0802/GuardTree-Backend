@@ -23,8 +23,8 @@ class FormRecordCreate(BaseModel):
 
 class FormRecord(FormRecordCreate):
     id: int
-    case_name: str
-    user_name: str
+    case_name: Optional[str] = None
+    user_name: Optional[str] = None
     created_at: datetime
     updated_at: datetime
 
