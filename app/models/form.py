@@ -1,31 +1,30 @@
-from enum import IntEnum
-from typing import Optional, Literal
-from datetime import datetime
 from pydantic import BaseModel
+from typing import List, Optional
+from datetime import datetime
 
-class SupportLevel(int, IntEnum):
-    NONE = 0
-    MONITOR = 1
-    VERBAL = 2
-    PARTIAL = 3
-    FULL = 4
-
-class FormEntryCreate(BaseModel):
+class FormItem(BaseModel):
     activity: str
     item: str
-    subitem: Optional[str] = None
-    support_type: Optional[SupportLevel] = None
+    subitem: Optional[str]
     core_area: str
-    source_form: Optional[Literal["A", "B", "C", "D", "E", "F", "G"]] = None
+    support_type: Optional[int]
 
-class FormEntry(BaseModel):
+class FormRecordCreate(BaseModel):
+    case_name: str
+    case_id: int
+    user_name: str
+    user_id: int
+    year: int
+    form_A: List[FormItem]
+    form_B: List[FormItem]
+    form_C: List[FormItem]
+    form_D: List[FormItem]
+    form_E: List[FormItem]
+    form_F: List[FormItem]
+    form_G: List[FormItem]
+
+class FormRecord(FormRecordCreate):
     id: int
-    activity: str
-    item: str
-    subitem: Optional[str] = None
-    support_type: Optional[SupportLevel] = None
-    core_area: str
-    source_form: Optional[str] = None
     created_at: datetime
     updated_at: datetime
 
