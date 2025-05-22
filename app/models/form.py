@@ -10,9 +10,7 @@ class FormItem(BaseModel):
     support_type: Optional[int]
 
 class FormRecordCreate(BaseModel):
-    case_name: str
     case_id: int
-    user_name: str
     user_id: int
     year: int
     form_A: List[FormItem]
@@ -25,6 +23,8 @@ class FormRecordCreate(BaseModel):
 
 class FormRecord(FormRecordCreate):
     id: int
+    case_name: str
+    user_name: str
     created_at: datetime
     updated_at: datetime
 
