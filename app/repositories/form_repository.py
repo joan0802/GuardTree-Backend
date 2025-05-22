@@ -1,26 +1,25 @@
-from app.db import database, form_entries_table
-from datetime import datetime
+from typing import List, Dict, Any
+from app.core.supabase_client import SupabaseService
 
 class FormRepository:
+    TABLE_NAME = "forms"
+    
     @staticmethod
-    async def get_all():
-        query = form_entries_table.select()
-        return await database.fetch_all(query)
-
+    async def get_all() -> List[Dict[str, Any]]:
+        """Get all form entries from the database"""
+        return await SupabaseService.get_all(FormRepository.TABLE_NAME)
+   
     @staticmethod
     async def get_by_id(row_id: int):
-        query = form_entries_table.select().where(form_entries_table.c.id == row_id)
-        return await database.fetch_one(query)
+        """Get a specific form entry by ID"""
+        return await SupabaseService.get_by_id(FormRepository.TABLE_NAME, row_id)
 
     @staticmethod
     async def create(data: dict):
-        now = datetime.utcnow()
-        data.update({"created_at": now, "updated_at": now})
-        query = form_entries_table.insert().values(**data)
-        record_id = await database.execute(query)
-        return {**data, "id": record_id}
+        """Create a new form entry"""
+        return await SupabaseService.create(FormRepository.TABLE_NAME, data)
 
     @staticmethod
     async def delete(row_id: int):
-        query = form_entries_table.delete().where(form_entries_table.c.id == row_id)
-        return await database.execute(query)
+        """Delete a form entry by ID"""
+        return await SupabaseService.delete(FormRepository.TABLE_NAME, row_id)
