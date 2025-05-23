@@ -90,12 +90,7 @@ async def test_analyze_case_success(
         question_field="A"
     )
 
-def test_build_prompt_summary():
-    """Test build_prompt for summary"""
-    case_data = {"case_name": "Alice", "A": "資料A", "B": "資料B"}
-    prompt = LLMService.build_prompt(case_data, "summary")
-    assert "以下是服務對象的日常生活功能評量資料：" in prompt
-    assert "請針對上述資料進行智能摘要" in prompt
+
 
 @patch('app.services.llm_service.llm_pipeline')
 def test_run_llm(mock_pipeline):

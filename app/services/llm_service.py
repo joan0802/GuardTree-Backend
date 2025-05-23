@@ -3,29 +3,6 @@ from app.core.llm_pipeline import llm_pipeline
 import json
 
 class LLMService:
-    @staticmethod
-    def build_prompt(case_data, analysis_type):
-        """
-        根據分析類型與個案資料組 prompt 字串
-        """
-        base_info = "以下是服務對象的日常生活功能評量資料：\n"
-        # for key, value in case_data.items():
-        #     base_info += f"{key}：{value}\n"
-        base_info += str(case_data)
-
-        instruction = ""
-        if analysis_type == "summary":
-            instruction = "請針對上述資料進行智能摘要，條列說明服務對象整體日常生活能力狀況。"
-        elif analysis_type == "strength":
-            instruction = "請找出服務對象在日常生活功能中表現最好的幾項。"
-        elif analysis_type == "concern":
-            instruction = "請找出服務對象在日常生活功能中表現較差、需要關注的幾項。"
-        elif analysis_type == "priority":
-            instruction = "請依據資料內容，判斷目前最急迫、最需要改善的活動項目，並說明原因。"
-        elif analysis_type == "strategy":
-            instruction = "請根據上述資料，提供協助服務對象改善日常生活功能的具體策略建議。"
-
-        return base_info + "\n" + instruction
 
     @staticmethod
     def run_llm(prompt: str) -> str:
@@ -82,13 +59,13 @@ class LLMService:
             請輸出以下 JSON 格式：
             {{
             "summary": {{
-                "summary": "請提供智能摘要。",
-                "strengths": "請列出個案的主要優勢。",
-                "concerns": "請列出個案需關注的事項。",
-                "priority_item": "請列出優先改善項目。"
+                "summary": "請針對上述資料進行智能摘要，條列說明服務對象整體日常生活能力狀況。",
+                "strengths": "請找出服務對象在日常生活功能中表現最好的幾項。",
+                "concerns": "請找出服務對象在日常生活功能中表現較差、需要關注的幾項。",
+                "priority_item": "請依據資料內容，判斷目前最急迫、最需要改善的活動項目，並說明原因。"
             }},
             "suggestions": {{
-                "strategy": "請提供策略建議。"
+                "strategy": "請根據上述資料，提供協助服務對象改善日常生活功能的具體策略建議。"
             }}
             }}
 
