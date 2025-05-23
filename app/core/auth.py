@@ -2,11 +2,11 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
-from typing import Dict, Any, Optional
+from typing import Dict, Optional
 import os
 from dotenv import load_dotenv
 
-from app.repositories.user_repository import UserRepository
+from app.repositories.user_repository import UserRepository, UserDict
 
 # Load environment variables
 load_dotenv()
@@ -19,7 +19,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 # OAuth2 scheme
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
-def create_access_token(data: Dict[str, Any]) -> str:
+def create_access_token(data: Dict) -> str:
     """
     Create a JWT access token
     """
@@ -29,7 +29,7 @@ def create_access_token(data: Dict[str, Any]) -> str:
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
-async def authenticate_user(email: str, password: str) -> Optional[Dict[str, Any]]:
+async def authenticate_user(email: str, password: str) -> Optional[UserDict]:
     """
     Authenticate a user
     """
@@ -39,9 +39,10 @@ async def authenticate_user(email: str, password: str) -> Optional[Dict[str, Any
         return None
     if not UserRepository.verify_password(password, user["password"]):
         return None
+    # The activate check is already handled in the login endpoint in auth_controller.py
     return user
 
-async def get_current_user(token: str = Depends(oauth2_scheme)) -> Dict[str, Any]:
+async def get_current_user(token: str = Depends(oauth2_scheme)) -> UserDict:
     """
     Get the current user from the token
     """
@@ -65,7 +66,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> Dict[str, Any
         raise credentials_exception
     return user
 
-async def get_current_admin_user(current_user: Dict[str, Any] = Depends(get_current_user)) -> Dict[str, Any]:
+async def get_current_admin_user(current_user: UserDict = Depends(get_current_user)) -> UserDict:
     """
     Get the current user if they are an admin
     """

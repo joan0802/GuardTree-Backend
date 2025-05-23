@@ -1,23 +1,34 @@
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Optional, TypedDict
 import bcrypt
 from app.core.supabase_client import SupabaseService
+
+
+class UserDict(TypedDict):
+    id: int
+    name: str
+    email: str
+    password: str
+    role: str
+    created_at: str
+    isAdmin: bool
+    activate: bool
 
 
 class UserRepository:
     TABLE_NAME = "users"
     
     @staticmethod
-    async def get_all_users() -> List[Dict[str, Any]]:
+    async def get_all_users() -> List[UserDict]:
         """Get all users from the database"""
         return await SupabaseService.get_all(UserRepository.TABLE_NAME)
     
     @staticmethod
-    async def get_user_by_id(user_id: int) -> Optional[Dict[str, Any]]:
+    async def get_user_by_id(user_id: int) -> Optional[UserDict]:
         """Get a specific user by ID"""
         return await SupabaseService.get_by_id(UserRepository.TABLE_NAME, user_id)
     
     @staticmethod
-    async def get_user_by_email(email: str) -> Optional[Dict[str, Any]]:
+    async def get_user_by_email(email: str) -> Optional[UserDict]:
         """Get a user by email"""
         response = await SupabaseService.query(
             UserRepository.TABLE_NAME, 
@@ -26,19 +37,27 @@ class UserRepository:
         return response[0] if response else None
     
     @staticmethod
-    async def create_user(user_data: Dict[str, Any]) -> Dict[str, Any]:
+    async def create_user(user_data: Dict) -> UserDict:
         """Create a new user"""
         # Hash the password before storing
         user_data["password"] = UserRepository._hash_password(user_data["password"])
+        # Ensure activate is boolean with default True
+        if "activate" not in user_data:
+            user_data["activate"] = True
+        elif not isinstance(user_data["activate"], bool):
+            user_data["activate"] = bool(user_data["activate"])
         return await SupabaseService.create(UserRepository.TABLE_NAME, user_data)
     
     @staticmethod
-    async def update_user(user_id: int, user_data: Dict[str, Any]) -> Dict[str, Any]:
+    async def update_user(user_id: int, user_data: Dict) -> UserDict:
         """Update user information"""
+        # Ensure activate is boolean if present
+        if "activate" in user_data and not isinstance(user_data["activate"], bool):
+            user_data["activate"] = bool(user_data["activate"])
         return await SupabaseService.update(UserRepository.TABLE_NAME, user_id, user_data)
     
     @staticmethod
-    async def update_password(user_id: int, new_password: str) -> Dict[str, Any]:
+    async def update_password(user_id: int, new_password: str) -> UserDict:
         """Update user password"""
         hashed_password = UserRepository._hash_password(new_password)
         return await SupabaseService.update(
@@ -66,7 +85,7 @@ class UserRepository:
         return bcrypt.checkpw(
             plain_password.encode('utf-8'),
             hashed_password.encode('utf-8')
-        ) 
+        )
     
 
 if __name__ == "__main__":
