@@ -1,14 +1,14 @@
-from typing import Dict, Any, Optional
+from typing import Optional
 from datetime import datetime
 from app.core.supabase_client import SupabaseService
+from app.models.llm_analysis_result import AnalysisResult
 
 class LLMRepository:
     FILLED_TABLE = "forms"
     ANALYSIS_TABLE = "LifeSupportFormAnalysis"
 
     @staticmethod
-    async def get_question_value(case_id: str, year: str, question_field: str) -> Optional[Any]:
-        """Fetch the value of a specific question field by case_id and year"""
+    async def get_question_value(case_id: str, year: str, question_field: str):
         filters = {
             "case_id": case_id,
             "year": year
@@ -19,11 +19,8 @@ class LLMRepository:
             question_field
         )
 
-
-
     @staticmethod
-    async def save_analysis_result(filled_form_id: int, suggestions: dict, summary: dict, question_field: str) -> Dict[str, Any]:
-        """Insert LLM analysis result into database"""
+    async def save_analysis_result(filled_form_id: int, suggestions: dict, summary: dict, question_field: str):
         data = {
             "filled_form_id": filled_form_id,
             "created_at": datetime.now().isoformat(),
@@ -32,22 +29,19 @@ class LLMRepository:
             "question_field": question_field
         }
         return await SupabaseService.create(LLMRepository.ANALYSIS_TABLE, data)
-    
-    
 
     @staticmethod
-    async def get_analysis_result(filled_form_id: int, question_field: str) -> Optional[Any]:
-        """Fetch the value of a specific question field by filled_form_id and question_field"""
+    async def get_analysis_result(filled_form_id: int, question_field: str) -> Optional[AnalysisResult]:
         filters = {
             "filled_form_id": filled_form_id,
             "question_field": question_field
         }
-        summary_result =  await SupabaseService.query_field_by_conditions(
+        summary_result = await SupabaseService.query_field_by_conditions(
             LLMRepository.ANALYSIS_TABLE,
             filters,
             "summary"
         )
-        suggestions_result =  await SupabaseService.query_field_by_conditions(
+        suggestions_result = await SupabaseService.query_field_by_conditions(
             LLMRepository.ANALYSIS_TABLE,
             filters,
             "suggestions"
@@ -55,7 +49,7 @@ class LLMRepository:
         if not summary_result:
             return None
 
-        return {
-            "summary": summary_result,
-            "suggestions": suggestions_result
-        }
+        return AnalysisResult(
+            summary=summary_result,
+            suggestions=suggestions_result
+        )

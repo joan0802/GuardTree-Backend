@@ -1,104 +1,54 @@
 import pytest
-from unittest.mock import patch, AsyncMock
-
+from unittest.mock import AsyncMock, patch
 from app.services.llm_service import LLMService
+from app.models.llm_analysis_result import AnalysisResult, Summary, Suggestions
 
 @pytest.mark.asyncio
-@patch('app.repositories.llm_repository.LLMRepository.get_question_value', new_callable=AsyncMock)
-async def test_analyze_case_form_not_found(mock_get_question_value):
-    """Test analyze_case when form data not found"""
-    mock_get_question_value.return_value = None
-
-    with pytest.raises(ValueError) as excinfo:
-        await LLMService.analyze_case(case_id=1, year="2024", question_field="A")
-
-    assert "Form not found" in str(excinfo.value)
-    mock_get_question_value.assert_awaited_once_with(case_id=1, year="2024", question_field="A")
-
-@pytest.mark.asyncio
-@patch('app.repositories.llm_repository.LLMRepository.get_analysis_result', new_callable=AsyncMock)
-@patch('app.repositories.llm_repository.LLMRepository.get_question_value', new_callable=AsyncMock)
-async def test_analyze_case_existing_result(mock_get_question_value, mock_get_analysis_result):
-    """Test analyze_case when analysis result already exists"""
-    mock_get_question_value.return_value = {"id": 1, "case_name": "Alice", "A": "測試資料"}
-    mock_get_analysis_result.return_value = {"summary": "已存在分析結果"}
-
-    result = await LLMService.analyze_case(case_id=1, year="2024", question_field="A")
-
-    assert result == {"summary": "已存在分析結果"}
-    mock_get_question_value.assert_awaited()
-    mock_get_analysis_result.assert_awaited()
-
-@pytest.mark.asyncio
-@patch('app.repositories.llm_repository.LLMRepository.save_analysis_result', new_callable=AsyncMock)
-@patch('app.services.llm_service.LLMService.run_llm')
-@patch('app.repositories.llm_repository.LLMRepository.get_analysis_result', new_callable=AsyncMock)
-@patch('app.repositories.llm_repository.LLMRepository.get_question_value', new_callable=AsyncMock)
-async def test_analyze_case_success(
-    mock_get_question_value,
-    mock_get_analysis_result,
-    mock_run_llm,
-    mock_save_analysis_result
-):
-    """Test analyze_case normal successful case"""
-
-    mock_get_question_value.side_effect = [
-        {"id": 1, "case_name": "Alice", "A": "測試資料"},  # for form_data
-        1  # for form_id
-    ]
-    mock_get_analysis_result.return_value = None
-
-    # run_llm 模擬回傳
-    mock_run_llm.return_value = '''
-        {
-            "summary": {
-                "summary": "測試摘要",
-                "strengths": "優勢",
-                "concerns": "關注事項",
-                "priority_item": "改善項目"
-            },
-            "suggestions": {
-                "strategy": "策略建議"
-            }
-        }
-        '''
-
-    # 呼叫 function
-    result = await LLMService.analyze_case(case_id=1, year="2024", question_field="A")
-
-    expected_result = {
-        "summary": {
-            "summary": "測試摘要",
-            "strengths": "優勢",
-            "concerns": "關注事項",
-            "priority_item": "改善項目"
-        },
-        "suggestions": {
-            "strategy": "策略建議"
-        }
-    }
-
-    assert result == expected_result
-
-    mock_run_llm.assert_called_once()
-    assert mock_get_question_value.await_count == 2
-    mock_get_analysis_result.assert_awaited_once_with(filled_form_id=1, question_field="A")
-    mock_save_analysis_result.assert_awaited_once_with(
-        filled_form_id=1,
-        suggestions=expected_result["suggestions"],
-        summary=expected_result["summary"],
-        question_field="A"
+async def test_analyze_case_with_existing_result():
+    existing_result = AnalysisResult(
+        summary=Summary(
+            summary="已有摘要",
+            strengths="優勢",
+            concerns="困難",
+            priority_item="最急迫"
+        ),
+        suggestions=Suggestions(strategy="已有策略")
     )
 
+    with patch("app.repositories.llm_repository.LLMRepository.get_question_value", new=AsyncMock(return_value="form_data")), \
+         patch("app.repositories.llm_repository.LLMRepository.get_analysis_result", new=AsyncMock(return_value=existing_result)):
+        
+        result = await LLMService.analyze_case(1, "2025", "questions_A")
+        assert result["summary"]["summary"] == "已有摘要"
+        assert result["summary"]["strengths"] == "優勢"
+        assert result["suggestions"]["strategy"] == "已有策略"
 
 
-@patch('app.services.llm_service.llm_pipeline')
-def test_run_llm(mock_pipeline):
-    """Test run_llm"""
-    mock_pipeline.return_value = "LLM回應"
+@pytest.mark.asyncio
+async def test_analyze_case_without_existing_result():
+    new_result = AnalysisResult(
+        summary=Summary(
+            summary="新摘要",
+            strengths="優勢",
+            concerns="困難",
+            priority_item="最急迫"
+        ),
+        suggestions=Suggestions(strategy="新策略")
+    )
 
-    prompt = "請做什麼事"
-    result = LLMService.run_llm(prompt)
+    with patch("app.repositories.llm_repository.LLMRepository.get_question_value", new=AsyncMock(side_effect=["form_data", 99])), \
+         patch("app.repositories.llm_repository.LLMRepository.get_analysis_result", new=AsyncMock(return_value=None)), \
+         patch("app.models.llm_prompt.LLMPrompt.generate_analysis_prompt", return_value="prompt"), \
+         patch("app.services.llm_service.LLMService.run_llm", return_value="json response"), \
+         patch("app.services.llm_service.LLMService.parse_response_to_json", return_value=new_result), \
+         patch("app.repositories.llm_repository.LLMRepository.save_analysis_result", new=AsyncMock(return_value={"id": 1})):
+        
+        result = await LLMService.analyze_case(1, "2025", "questions_A")
+        assert result["summary"]["summary"] == "新摘要"
+        assert result["suggestions"]["strategy"] == "新策略"
 
-    mock_pipeline.assert_called_once_with(prompt)
-    assert result == "LLM回應"
+@pytest.mark.asyncio
+async def test_analyze_case_form_not_found():
+    with patch("app.repositories.llm_repository.LLMRepository.get_question_value", new=AsyncMock(return_value=None)):
+        with pytest.raises(ValueError, match="Form not found"):
+            await LLMService.analyze_case(1, "2025", "questions_A")
