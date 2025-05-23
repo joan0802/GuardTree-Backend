@@ -1,0 +1,2144 @@
+{
+  "form_A": [
+    {
+      "activity": "1. 使用廁所",
+      "item": "1. 小便",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "1. 使用廁所",
+      "item": "2. 大便",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "1. 使用廁所",
+      "item": "3. 事後清理",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "1. 使用廁所",
+      "item": "4. 遵守如廁禮儀/隱私",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "2. 處理衣物",
+      "item": "1. 更換髒衣物",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "2. 處理衣物",
+      "item": "2. 洗滌衣物",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "2. 處理衣物",
+      "item": "3. 晾曬衣物",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "2. 處理衣物",
+      "item": "4. 使用乾衣機烘乾衣物",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "2. 處理衣物",
+      "item": "5. 摺疊衣物",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "2. 處理衣物",
+      "item": "6. 收納/整理衣物",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "1. 食物處理",
+      "subitem": "1) 清洗食物",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "1. 食物處理",
+      "subitem": "2) 使用工具處理食物",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "1. 食物處理",
+      "subitem": "3) 使用量杯、量匙量取正確分量的食物",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "1. 食物處理",
+      "subitem": "4) 挑菜",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "2. 簡易餐食",
+      "subitem": "1) 用熱開水沖泡飲料/速食品",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "2. 簡易餐食",
+      "subitem": "2) 用現成食物調配餐食",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "2. 簡易餐食",
+      "subitem": "3) 食物加熱",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "3. 烹煮食物",
+      "subitem": "1) 淘洗米/煮飯",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "3. 烹煮食物",
+      "subitem": "2) 辨識水開與否",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "3. 烹煮食物",
+      "subitem": "3) 處理/烹煮速食調理食品包",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "3. 烹煮食物",
+      "subitem": "4) 用電鍋蒸煮食品等",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "3. 烹煮食物",
+      "subitem": "5) 以煮的方式製作餐食",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "3. 烹煮食物",
+      "subitem": "6) 燙煮食物並調配佐料沾拌",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "3. 烹煮食物",
+      "subitem": "7) 用烤箱烤食物",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "3. 烹煮食物",
+      "subitem": "8) 製作湯類餐點",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 準備食物",
+      "item": "3. 烹煮食物",
+      "subitem": "9) 會看序列圖片/食譜製作食物",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "4. 進食",
+      "item": "1. 使用餐具進食",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "4. 進食",
+      "item": "2. 盡量保持桌面乾淨/吃飯不掉落食物在桌面上",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "4. 進食",
+      "item": "3. 打開不須使用工具的食物容器",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "4. 進食",
+      "item": "4. 使用工具打開食物容器",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "4. 進食",
+      "item": "5. 剝除水果外皮進食",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "1. 垃圾處理",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "2. 蜘蛛網清理",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "3. 擦拭",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "4. 刷洗",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "5. 掃地",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "6. 拖地",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "7. 以正確方式維護家電用品/家庭清潔",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "8. 進行清潔工作時會將家具移動並歸位",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "9. 清理廚房",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "10. 清洗衞浴設備",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "11. 清理庭院/陽台/樓梯",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "12. 刷洗餐具",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "13. 整理寢具",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "14. 選擇及使用適當、適量的清潔劑清洗不同的器具",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "15. 使用清潔劑注意安全",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 料理家事/打掃房間",
+      "item": "16. 家務管理",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 穿衣",
+      "item": "1. 穿脫衣/褲",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 穿衣",
+      "item": "2. 穿脫鞋襪",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 穿衣",
+      "item": "3. 選擇/搭配衣物",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 穿衣",
+      "item": "4. 依適當場合與季節選擇衣鞋",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 穿衣",
+      "item": "5. 更換衣物",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 穿衣",
+      "item": "6. 更衣時會注意隱私保護",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 梳洗沐浴/個人衛生",
+      "item": "1. 使用肥皂洗手",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 梳洗沐浴/個人衛生",
+      "item": "2. 刷牙",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 梳洗沐浴/個人衛生",
+      "item": "3. 洗臉",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 梳洗沐浴/個人衛生",
+      "item": "4. 擤鼻涕",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 梳洗沐浴/個人衛生",
+      "item": "5. 洗頭",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 梳洗沐浴/個人衛生",
+      "item": "6. 整理頭髮",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 梳洗沐浴/個人衛生",
+      "item": "7. 假牙照護",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 梳洗沐浴/個人衛生",
+      "item": "8. 洗澡",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 梳洗沐浴/個人衛生",
+      "item": "9. 洗澡時注意隱私",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 梳洗沐浴/個人衛生",
+      "item": "10. 修剪指甲",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 梳洗沐浴/個人衛生",
+      "item": "11. 刮鬍子",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 梳洗沐浴/個人衛生",
+      "item": "12. 女性經期處理",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 梳洗沐浴/個人衛生",
+      "item": "13. 簡單皮膚護理",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "8. 使用家電",
+      "item": "1. 使用電話",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "8. 使用家電",
+      "item": "2. 使用電視機",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "8. 使用家電",
+      "item": "3. 使用電扇",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "8. 使用家電",
+      "item": "4. 使用音響/收音機",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "8. 使用家電",
+      "item": "5. 使用冷氣機",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "8. 使用家電",
+      "item": "6. 使用開飲機",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    }
+  ],
+  "form_B": [
+    {
+      "activity": "1. 往返社區內各地",
+      "item": "1. 地點往返",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "1. 往返社區內各地",
+      "item": "2. 使用公共交通工具",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "2. 社區中參與娛樂/休閒",
+      "item": "2. 規劃個人休閒",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "2. 社區中參與娛樂/休閒",
+      "item": "3. 搜尋/取得休閒活動資訊",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "2. 社區中參與娛樂/休閒",
+      "item": "4. 參與休閒社團",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "2. 社區中參與娛樂/休閒",
+      "item": "5. 租用/購置休閒器材用品",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "3. 社區中使用公共設施與服務",
+      "item": "1. 辨識不同需要的公眾服務(如警察局/郵局/銀行/監理所/理髮廳/醫療院所等)",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "3. 社區中使用公共設施與服務",
+      "item": "2. 依需要使用公眾服務(如警察局/郵局/銀行/監理所/理髮廳/醫療院所等)",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "4. 拜訪親朋好友",
+      "item": "1. 選擇想要互動/拜訪的親友",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "4. 拜訪親朋好友",
+      "item": "2. 規劃個人訪友",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "5. 參與喜歡的社區活動",
+      "item": "1. 選擇喜愛的社區活動",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "5. 參與喜歡的社區活動",
+      "item": "2. 用餐",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "5. 參與喜歡的社區活動",
+      "item": "3. 宗教活動",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "5. 參與喜歡的社區活動",
+      "item": "4. 志工",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "6. 選購物品與服務",
+      "item": "1. 到適當商店購買需要的物品、或服務",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "6. 選購物品與服務",
+      "item": "2. 購買安全食物",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "6. 選購物品與服務",
+      "item": "3. 電子票卡儲值/繳費",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "6. 選購物品與服務",
+      "item": "4. 購買合適衣物",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "6. 選購物品與服務",
+      "item": "5. 透過目錄和網際網路購買特定的物品",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "7. 與社區居民互動",
+      "item": "1. 使用社交禮儀與人互動(EX:握手/表示謝謝.請.對不起與人互動)",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "7. 與社區居民互動",
+      "item": "2. 維持社交合宜的人際界線(EX:身體適當距離/觸碰/隱和/個人安全)",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "8. 使用公共大樓和設施",
+      "item": "2. 依循標誌使用場所中的公共設施",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    },
+    {
+      "activity": "8. 使用公共大樓和設施",
+      "item": "3. 遵守與瞭解進出和使用設備的規定及後果",
+      "subitem": null,
+      "core_area": "社會融合",
+      "support_type": null
+    }
+  ],
+  "form_C": [
+    {
+      "activity": "1. 在學習活動與他人互動",
+      "item": "1. 在團體活動中能表達自己的想法",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "1. 在學習活動與他人互動",
+      "item": "2. 能遵循團體規則或支持者的指示",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "1. 在學習活動與他人互動",
+      "item": "3. 在學習活動中能尊重他人並與人合作",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "2. 參與教育/訓練決策(正式的課堂訓練)",
+      "item": "1. 了解自己在學習上的選擇與目標",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "2. 參與教育/訓練決策(正式的課堂訓練)",
+      "item": "2. 表達自己在學習上的選擇與目標",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "2. 參與教育/訓練決策(正式的課堂訓練)",
+      "item": "3. 知道透過哪些正式機構可以得到課程資訊",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "2. 參與教育/訓練決策(正式的課堂訓練)",
+      "item": "4. 透過正式機構所提供的資訊查閱",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "2. 參與教育/訓練決策(正式的課堂訓練)",
+      "item": "5. 選擇自己有興趣的課程/班級/工作坊",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "2. 參與教育/訓練決策(正式的課堂訓練)",
+      "item": "6. 計畫符合需要的課程時間表/上課方式",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "2. 參與教育/訓練決策(正式的課堂訓練)",
+      "item": "7. 報名參加",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 學習並使用問題解決策略",
+      "item": "1. 辨識何時出錯/有問題",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 學習並使用問題解決策略",
+      "item": "2. 想出1. 至2. 個解決策略",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 學習並使用問題解決策略",
+      "item": "3. 確認適合的解決策略",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 學習並使用問題解決策略",
+      "item": "4. 將解決策略運用在現實生活中",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 學習並使用問題解決策略",
+      "item": "5. 面對問題挫折時適當面對與處理",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "4. 操作科技工具學習(正式的課堂訓練)",
+      "item": "1. 使用電子計算機",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "4. 操作科技工具學習(正式的課堂訓練)",
+      "item": "2. 電腦使用",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "4. 操作科技工具學習(正式的課堂訓練)",
+      "item": "3. 使用MP3. /MP4",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "4. 操作科技工具學習(正式的課堂訓練)",
+      "item": "4. 使用手機",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "4. 操作科技工具學習(正式的課堂訓練)",
+      "item": "5. 使用擴大性溝通輔具(EX:AAC.溝通圖卡.)",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 使用教育/訓練設施(正式的課堂訓練)",
+      "item": "1. 自行到達課堂地點",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "5. 使用教育/訓練設施(正式的課堂訓練)",
+      "item": "2. 遵守與瞭解進出和使用設備的規定及後果",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "1. 閱讀",
+      "subitem": "1) 閱讀個人基本資料",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "1. 閱讀",
+      "subitem": "2) 閱讀重要關係人基本資料",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "1. 閱讀",
+      "subitem": "3) 閱讀公共場所的公共標示/符號/告示/招貼",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "1. 閱讀",
+      "subitem": "4) 閱讀生活場所的名稱",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "1. 閱讀",
+      "subitem": "5) 查閱電話本",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "1. 閱讀",
+      "subitem": "6) 閱讀目錄",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "1. 閱讀",
+      "subitem": "7) 閱讀書信並有適當反應",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "1. 閱讀",
+      "subitem": "8) 閱讀物品使用手冊/說明書",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "2. 書寫",
+      "subitem": "1) 數字",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "2. 書寫",
+      "subitem": "2) 重要詞彙",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "2. 書寫",
+      "subitem": "3) 個人基本資料",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "2. 書寫",
+      "subitem": "4) 簡短信函/便條/購物單",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "2. 書寫",
+      "subitem": "5) 個人需要/想法",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "2. 書寫",
+      "subitem": "6) 短文/日記",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "2. 書寫",
+      "subitem": "7) 手機發簡訊/進行需要的輸入",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "3. 金錢使用",
+      "subitem": "1) 加的概念",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "3. 金錢使用",
+      "subitem": "2) 減的概念",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "3. 金錢使用",
+      "subitem": "3) 辨識錢幣及紙鈔",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "3. 金錢使用",
+      "subitem": "4) 兌換錢幣",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "3. 金錢使用",
+      "subitem": "5) 購物時會付出合理的金額並等候找零",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "3. 金錢使用",
+      "subitem": "6) 核對找錢是否正確",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "3. 金錢使用",
+      "subitem": "7) 購物時索取發票",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "3. 金錢使用",
+      "subitem": "8) 使用輔助器（計算機）估算欲購食物",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "4. 購買比價",
+      "subitem": "1) 分辨價錢的貴/便宜",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "5. 閱讀與運用時間",
+      "subitem": "1) 星期與例行作息的關係",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "5. 閱讀與運用時間",
+      "subitem": "2) 使用日暦",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "5. 閱讀與運用時間",
+      "subitem": "3) 使用週暦",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "5. 閱讀與運用時間",
+      "subitem": "4) 使用月曆",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "5. 閱讀與運用時間",
+      "subitem": "5) 閱讀鐘錶/電子錶",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "5. 閱讀與運用時間",
+      "subitem": "6) 使用鬧鐘/在鐘響時有適當反應",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "5. 閱讀與運用時間",
+      "subitem": "7) 使用作息表規律的生活或進行活動",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "5. 閱讀與運用時間",
+      "subitem": "8) 使用個人日曆/記事本紀錄重要事情",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "5. 閱讀與運用時間",
+      "subitem": "9) 閱讀時刻表上的時間並做適當反應",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "6. 記憶重要/常用資料",
+      "subitem": "1) 背誦個人基本資料",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "6. 學習基本認知",
+      "item": "6. 記憶重要/常用資料",
+      "subitem": "2) 覆誦一段數字並做出適當反應",
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 學習健康與體育知能",
+      "item": "1. 學習遵循並維持適當的飲食與運動",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 學習健康與體育知能",
+      "item": "2. 學習了解良好的營養與不當營養對身體的影響",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "7. 學習健康與體育知能",
+      "item": "3. 學習用藥並紀錄.",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "8. 學習自我決策技能",
+      "item": "1. 學習表達個人目標與喜好",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "8. 學習自我決策技能",
+      "item": "2. 學習了解所做的選擇的相關後果和責任",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "8. 學習自我決策技能",
+      "item": "3. 運用自我檢核管理個人生活中的活動",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "9. 學習自我管理策略",
+      "item": "1. 計劃作息",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    },
+    {
+      "activity": "9. 學習自我管理策略",
+      "item": "2. 遵守工作規則/生活公約/班級公約",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    },
+    {
+      "activity": "9. 學習自我管理策略",
+      "item": "3. 按時完成交辦的事項",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    },
+    {
+      "activity": "9. 學習自我管理策略",
+      "item": "4. 分辨事情輕重緩急並決定先後順序依序進行",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    },
+    {
+      "activity": "9. 學習自我管理策略",
+      "item": "5. 運用衝動/情緒控制的原則在日常生活中",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    },
+    {
+      "activity": "9. 學習自我管理策略",
+      "item": "6. 知道遵守承諾的意義與重要性",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    },
+    {
+      "activity": "9. 學習自我管理策略",
+      "item": "7. 能運用遵守承諾的意義與重要性在日常生活中",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    },
+    {
+      "activity": "9. 學習自我管理策略",
+      "item": "8. 在日常生活中自我約束行為/自我提醒須注意的弱點",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    },
+    {
+      "activity": "9. 學習自我管理策略",
+      "item": "9. 自我生活安排",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    }
+  ],
+  "form_D": [
+    {
+      "activity": "1. 得到/適應工作",
+      "item": "1. 工作意識",
+      "subitem": "1) 認識工作對個人的價值",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "1. 得到/適應工作",
+      "item": "1. 工作意識",
+      "subitem": "2) 認識工作酬薪的方式",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "1. 得到/適應工作",
+      "item": "1. 工作意識",
+      "subitem": "3) 知道自己的工作興趣、能力與限制",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "1. 得到/適應工作",
+      "item": "1. 工作意識",
+      "subitem": "4) 了解適合自己的工作職種內容與機會",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "1. 得到/適應工作",
+      "item": "2. 職務適應",
+      "subitem": "1) 了解自己的職務適應情況",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "1. 得到/適應工作",
+      "item": "2. 職務適應",
+      "subitem": "2) 工作中遇有困難會先設法自己解決或尋求協助",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 學習並使用特定的工作技能",
+      "item": "1. 遵守基本人事規定",
+      "subitem": "1) 依規定請假",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "1. 得到/適應工作",
+      "item": "2. 職務適應",
+      "subitem": "2) 工作中先取得同意才離開工作崗位",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "1. 得到/適應工作",
+      "item": "2. 職務適應",
+      "subitem": "3) 遵守職場的工作規範",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 學習並使用特定的工作技能",
+      "item": "2. 工作準備或整理",
+      "subitem": "1) 工作前已能著好工作服並在工作區內",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 學習並使用特定的工作技能",
+      "item": "2. 工作準備或整理",
+      "subitem": "2) 工作前將材料或工具準備妥當",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 學習並使用特定的工作技能",
+      "item": "2. 工作準備或整理",
+      "subitem": "3) 工作後將材料或工具歸位",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 學習並使用特定的工作技能",
+      "item": "2. 工作準備或整理",
+      "subitem": "4) 維護工具或場所整潔",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 學習並使用特定的工作技能",
+      "item": "2. 工作準備或整理",
+      "subitem": "5) 工作中小心保護器物",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 學習並使用特定的工作技能",
+      "item": "3. 工作計畫",
+      "subitem": "1) 依工作計畫行事",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 學習並使用特定的工作技能",
+      "item": "3. 工作計畫",
+      "subitem": "2) 負責多項工作時，依所分配的時間執行",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 學習並使用特定的工作技能",
+      "item": "4. 服從指令",
+      "subitem": "1) 開始工作時能主動到指定區域，並立刻著手開始工作",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 學習並使用特定的工作技能",
+      "item": "4. 服從指令",
+      "subitem": "2) 服從工作分派，不計較或排斥",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 學習並使用特定的工作技能",
+      "item": "4. 服從指令",
+      "subitem": "3) 工作完成後會適當告知長官或同事，並詢問是否還要做其他工作",
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "3. 在可接受的速度下完成工作相關任務",
+      "item": "1. 持續工作不受環境干擾",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "3. 在可接受的速度下完成工作相關任務",
+      "item": "2. 工作中被糾正或打斷，盡快恢復工作",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "3. 在可接受的速度下完成工作相關任務",
+      "item": "3. 獨立完成工作，不需直接督導",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "3. 在可接受的速度下完成工作相關任務",
+      "item": "4. 工作中有不安或焦慮時會尋求協助",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "3. 在可接受的速度下完成工作相關任務",
+      "item": "5. 在指定的工作時限內完成工作",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "4. 在可接受的品質內完成工作相關任務",
+      "item": "1. 知道工作品質的要求",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "4. 在可接受的品質內完成工作相關任務",
+      "item": "2. 依規定完成品質檢核",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "5. 變更指派的工作",
+      "item": "1. 承受工作壓力、額外的工作",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "5. 變更指派的工作",
+      "item": "2. 適應工作中的變動",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "5. 變更指派的工作",
+      "item": "3. 接受較難或具挑戰性的工作",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "5. 變更指派的工作",
+      "item": "4. 溝通臨時交辦的工作困難處",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "5. 變更指派的工作",
+      "item": "5. 提出工作改變時需要的協助",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "6. 金錢使用與物品擁有",
+      "item": "1. 有足夠的錢購買生活需要的物品",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "6. 金錢使用與物品擁有",
+      "item": "2. 有自己的存款帳戶或金融卡，可以自由運用",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "6. 金錢使用與物品擁有",
+      "item": "3. 存更多的錢，可以買貴重的物品或旅行",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "6. 金錢使用與物品擁有",
+      "item": "4. 讓自己的居住環境更舒適",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    },
+    {
+      "activity": "6. 金錢使用與物品擁有",
+      "item": "5. 有保存重要物品空間或櫃子",
+      "subitem": null,
+      "core_area": "物質福祉",
+      "support_type": null
+    }
+  ],
+  "form_E": [
+    {
+      "activity": "1. 服用藥物與用藥安全",
+      "item": "1. 配合醫生的囑咐吃藥/塗藥",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "1. 服用藥物與用藥安全",
+      "item": "2. 知道自己因為什麼病症而服藥/塗藥",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "1. 服用藥物與用藥安全",
+      "item": "3. 吃藥後身體有不舒服去告訴照顧者/醫生",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "1. 服用藥物與用藥安全",
+      "item": "4. 警覺慢性疾病藥物快用完，請求協助",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 避免危及自身健康與安全",
+      "item": "1. 人身安全",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 避免危及自身健康與安全",
+      "item": "2. 居家安全",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 避免危及自身健康與安全",
+      "item": "3. 消防安全",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 避免危及自身健康與安全",
+      "item": "4. 交通安全",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "2. 避免危及自身健康與安全",
+      "item": "5. 食的安全",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "3. 取得健康照顧服務",
+      "item": "1. 身體不適或受傷會告訴照顧者",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "3. 取得健康照顧服務",
+      "item": "2. 自行就醫",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "3. 取得健康照顧服務",
+      "item": "4. 遵照建議服用保健食品",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "4. 隨意行走與移動",
+      "item": "1. 需要時，會使用輔具讓自己走得平穩、安全",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "4. 隨意行走與移動",
+      "item": "2. 避開路上的障礙物或坑洞",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "4. 隨意行走與移動",
+      "item": "3. 上下階梯或手扶梯會適時抓握扶手",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "4. 隨意行走與移動",
+      "item": "4. 依規定使用電梯",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "4. 隨意行走與移動",
+      "item": "5. 團體行動時，不隨意脫隊",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "5. 學習如何取得緊急服務",
+      "item": "1. 辨識緊急或無法自行處理的狀況",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "5. 學習如何取得緊急服務",
+      "item": "2. 緊急服務使用",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "5. 學習如何取得緊急服務",
+      "item": "3. 個人應變計畫",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "6. 維持飲食均衡",
+      "item": "1. 定時定量",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "6. 維持飲食均衡",
+      "item": "2. 配合建議攝取健康的食物",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "6. 維持飲食均衡",
+      "item": "3. 知道每日要多攝取多樣的蔬菜水果",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "6. 維持飲食均衡",
+      "item": "4. 選擇少油、少鹽、少糖、高纖類的食物攝取",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "7. 維持身體健康、\n身材適中",
+      "item": "1. 體重控制",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "7. 維持身體健康、\n身材適中",
+      "item": "2. 規律運動",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "7. 維持身體健康、\n身材適中",
+      "item": "3. 自我保健常識",
+      "subitem": null,
+      "core_area": "生理福祉",
+      "support_type": null
+    },
+    {
+      "activity": "8. 維持情緒健康",
+      "item": "1. 辨別基本情緒",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    },
+    {
+      "activity": "8. 維持情緒健康",
+      "item": "2. 知道情緒或行為的原因，並適當的反應",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    },
+    {
+      "activity": "8. 維持情緒健康",
+      "item": "3. 知道情緒或行為造成的影響",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    },
+    {
+      "activity": "8. 維持情緒健康",
+      "item": "4. 人事物等情境改變時，能保持穩定的情緒",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    },
+    {
+      "activity": "8. 維持情緒健康",
+      "item": "5. 在適當的情境表現合宜的情緒",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    },
+    {
+      "activity": "8. 維持情緒健康",
+      "item": "6. 使用適當的方法紓解情緒",
+      "subitem": null,
+      "core_area": "情緒福祉",
+      "support_type": null
+    }
+  ],
+  "form_F": [
+    {
+      "activity": "1. 與人合宜的互動溝通",
+      "item": "1. 理解他人的口語/非口語溝通表達",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "1. 與人合宜的互動溝通",
+      "item": "2. 使用口語/非口語方式表達需求、意願或想法/情感",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "1. 與人合宜的互動溝通",
+      "item": "3. 正確轉述他人的話或交待的事項",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "1. 與人合宜的互動溝通",
+      "item": "4. 與他人聊天、討論重要的事件",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "1. 與人合宜的互動溝通",
+      "item": "5. 對他人表示關心、問候、祝福",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "1. 與人合宜的互動溝通",
+      "item": "6. 適當的表達拒絕",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "1. 與人合宜的互動溝通",
+      "item": "7. 接聽電話時替人傳話或留言",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "2. 與他人一起參與休活動",
+      "item": "1. 與他人一同做團體遊戲或活動",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "2. 與他人一起參與休活動",
+      "item": "2. 輪流或等待活動的進行",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "2. 與他人一起參與休活動",
+      "item": "3. 遵守遊戲或活動的規則",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "2. 與他人一起參與休活動",
+      "item": "4. 和夥伴合作完成遊戲或活動",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "2. 與他人一起參與休活動",
+      "item": "5. 活動中與夥伴討論或分享經驗或心情",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "2. 與他人一起參與休活動",
+      "item": "6. 在團體中察言觀色，以決定自己該採取的行動",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "3. 建立並維持友誼",
+      "item": "1. 了解不同的情誼",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "3. 建立並維持友誼",
+      "item": "2. 用合宜的方式問候、關心朋友",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "3. 建立並維持友誼",
+      "item": "3. 與朋友聊天、溝通",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "3. 建立並維持友誼",
+      "item": "4. 在活動中能認識新朋友",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "3. 建立並維持友誼",
+      "item": "5. 邀請朋友出遊、參加活動",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "3. 建立並維持友誼",
+      "item": "6. 使用電子郵件或通訊軟體與人互動",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "3. 建立並維持友誼",
+      "item": "7. 與不同類型朋友互動，謹守分寸自我保護",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "3. 建立並維持友誼",
+      "item": "8. 處理與朋友間的不同意見及衝突",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "4. 與他人溝通個人需求",
+      "item": "1. 知道自己的問題或需求",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "4. 與他人溝通個人需求",
+      "item": "2. 用口語/非口語/輔具表達自己的問題或需求",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "4. 與他人溝通個人需求",
+      "item": "3. 需要時,會在社區中找到適當的人協助",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "4. 與他人溝通個人需求",
+      "item": "4. 向適當的人（認識的人）表達自己的問題、需求",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "4. 與他人溝通個人需求",
+      "item": "5. 對自己的問題或需求，做適當的判斷和選擇",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "4. 與他人溝通個人需求",
+      "item": "6. 在適當的時間表達問題、需求",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "4. 與他人溝通個人需求",
+      "item": "7. 正確清楚的表達自己的問題、需求",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "4. 與他人溝通個人需求",
+      "item": "8. 用平穩的心情表達問題、需求",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "4. 與他人溝通個人需求",
+      "item": "9. 適時表達較私密的問題或需求",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "5. 使用適當的社交技巧",
+      "item": "1.    接聽電話的基本禮貌",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "5. 使用適當的社交技巧",
+      "item": "2.    社交禮儀",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "5. 使用適當的社交技巧",
+      "item": "3.    餐桌禮儀",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "6. 擁有親密戀情",
+      "item": "1. 兩性有關知識",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "6. 擁有親密戀情",
+      "item": "2. 身體自主權意識",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    },
+    {
+      "activity": "6. 擁有親密戀情",
+      "item": "3. 合宜兩性交往與情感",
+      "subitem": null,
+      "core_area": "人際關係",
+      "support_type": null
+    }
+  ],
+  "form_G": [
+    {
+      "activity": "1. 為自己與他人發聲",
+      "item": "1. 用尊重平和的方式表達感覺、意見或想法",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    },
+    {
+      "activity": "1. 為自己與他人發聲",
+      "item": "2. 在適當的時機為別人或他人發聲",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    },
+    {
+      "activity": "1. 為自己與他人發聲",
+      "item": "3. 使用身心障礙服務資源",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    },
+    {
+      "activity": "1. 為自己與他人發聲",
+      "item": "4. 受歧視或不平等待遇時，適當的反應或尋求協助",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    },
+    {
+      "activity": "1. 為自己與他人發聲",
+      "item": "5. 權益受侵犯時，適當反應或尋求協助",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    },
+    {
+      "activity": "2. 保護自己免於被利用",
+      "item": "1. 不隨便借錢/物品給別人",
+      "subitem": null,
+      "core_area": "權利",
+      "support_type": null
+    },
+    {
+      "activity": "2. 保護自己免於被利用",
+      "item": "2. 避免過度使用電話、手機",
+      "subitem": null,
+      "core_area": "權利",
+      "support_type": null
+    },
+    {
+      "activity": "3. 處理個人的金錢財物",
+      "item": "1. 擬定每天日常生活的支出預算",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 處理個人的金錢財物",
+      "item": "2. 規劃一個月的零用錢要如何使用，並控管自己的花費",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 處理個人的金錢財物",
+      "item": "3. 將平時花費記帳",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 處理個人的金錢財物",
+      "item": "4. 在能力範圍內花費",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 處理個人的金錢財物",
+      "item": "5. 使用悠遊卡、愛心卡、iCash卡付款等",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 處理個人的金錢財物",
+      "item": "6. 儲蓄",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "3. 處理個人的金錢財物",
+      "item": "7. 存簿、金融卡、密碼與印鑑保管與使用安全",
+      "subitem": null,
+      "core_area": "個人發展",
+      "support_type": null
+    },
+    {
+      "activity": "4. 行使自己的法律責任",
+      "item": "1. 了解警察局、法院等公權力單位的角色與自身的關係",
+      "subitem": null,
+      "core_area": "權利",
+      "support_type": null
+    },
+    {
+      "activity": "4. 行使自己的法律責任",
+      "item": "2. 遵守一般法律",
+      "subitem": null,
+      "core_area": "權利",
+      "support_type": null
+    },
+    {
+      "activity": "4. 行使自己的法律責任",
+      "item": "3. 知道觸犯法律的後果",
+      "subitem": null,
+      "core_area": "權利",
+      "support_type": null
+    },
+    {
+      "activity": "4. 行使自己的法律責任",
+      "item": "4. 理解公民基本權利",
+      "subitem": null,
+      "core_area": "權利",
+      "support_type": null
+    },
+    {
+      "activity": "5. 歸屬或參與自我倡議/支持組織",
+      "item": "1. 知道與自身權益福利相關的組織/團體",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    },
+    {
+      "activity": "5. 歸屬或參與自我倡議/支持組織",
+      "item": "2. 表示參加相關組織/團體的意願",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    },
+    {
+      "activity": "5. 歸屬或參與自我倡議/支持組織",
+      "item": "3. 成為相關組織/團體的成員",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    },
+    {
+      "activity": "5. 歸屬或參與自我倡議/支持組織",
+      "item": "4. 參與相關組織/團體的會議",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    },
+    {
+      "activity": "5. 歸屬或參與自我倡議/支持組織",
+      "item": "5. 參與相關組織/團體的選舉活動",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    },
+    {
+      "activity": "5. 歸屬或參與自我倡議/支持組織",
+      "item": "6. 擔任相關組織/團體的幹部",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    },
+    {
+      "activity": "6. 取得法律服務",
+      "item": "1. 辨別需要法律的服務",
+      "subitem": null,
+      "core_area": "權利",
+      "support_type": null
+    },
+    {
+      "activity": "6. 取得法律服務",
+      "item": "2. 知道可提供法律諮詢或服務的單位",
+      "subitem": null,
+      "core_area": "權利",
+      "support_type": null
+    },
+    {
+      "activity": "6. 取得法律服務",
+      "item": "3. 向相關人員尋求協助取得法律服務",
+      "subitem": null,
+      "core_area": "權利",
+      "support_type": null
+    },
+    {
+      "activity": "6. 取得法律服務",
+      "item": "4. 說出所發生的法律事件",
+      "subitem": null,
+      "core_area": "權利",
+      "support_type": null
+    },
+    {
+      "activity": "7. 選擇與決定",
+      "item": "1. 簡易的生涯規劃",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    },
+    {
+      "activity": "7. 選擇與決定",
+      "item": "2. 選擇個人喜好的事物",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    },
+    {
+      "activity": "7. 選擇與決定",
+      "item": "3. 為自己的決定承擔責任",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    },
+    {
+      "activity": "7. 選擇與決定",
+      "item": "4. 誠實守信用",
+      "subitem": null,
+      "core_area": "自我決策",
+      "support_type": null
+    }
+  ]
+}
