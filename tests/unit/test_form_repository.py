@@ -4,7 +4,7 @@ from app.repositories.form_repository import FormRepository
 @pytest.fixture
 def form_record_data():
     import json
-    with open("app/data/form_filled_template.json", encoding="utf-8") as f:
+    with open("app/data/form.json", encoding="utf-8") as f:
         data = json.load(f)
     return {
         "case_id": 1,

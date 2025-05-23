@@ -28,7 +28,7 @@ async def setup_case_and_user():
 @pytest.fixture
 def valid_form_record_data():
     import json
-    with open("app/data/form_filled_template.json", encoding="utf-8") as f:
+    with open("app/data/form.json", encoding="utf-8") as f:
         data = json.load(f)
     return {
         "case_id": 1,
