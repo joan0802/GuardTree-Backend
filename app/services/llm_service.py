@@ -34,13 +34,9 @@ class LLMService:
             raise ValueError("Form not found")
 
         form_id = await LLMRepository.get_question_value(case_id, year, "id")
-
-        existing_result = await LLMRepository.get_analysis_result(
-            filled_form_id=form_id,
-            question_field=question_field
-        )
+        existing_result = await LLMService.get_analysis_result(case_id, year, question_field)
         if existing_result:
-            return existing_result.dict()
+            return existing_result
 
         prompt = LLMPrompt.generate_analysis_prompt(form_data)
         response_text = LLMService.run_llm(prompt)
@@ -53,4 +49,21 @@ class LLMService:
             question_field=question_field
         )
 
-        return analysis_result.dict()
+        return analysis_result
+    
+    @staticmethod
+    async def get_analysis_result(case_id: int, year: str, question_field: str):
+        form_data = await LLMRepository.get_question_value(case_id, year, question_field)
+        if not form_data:
+            raise ValueError("Form not found")
+
+        form_id = await LLMRepository.get_question_value(case_id, year, "id")
+
+        existing_result = await LLMRepository.get_analysis_result(
+            filled_form_id=form_id,
+            question_field=question_field
+        )
+        if existing_result:
+            return existing_result.dict()
+
+        return None
