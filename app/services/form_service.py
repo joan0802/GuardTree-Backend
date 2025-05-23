@@ -9,7 +9,7 @@ class FormService:
         records = await FormRepository.get_all()
         # batch find name (can be optimized to find all case/user at once)
         for r in records:
-            case = await CaseRepository.get_by_id(r["case_id"])
+            case = await CaseRepository.get_case_by_id(r["case_id"])
             user = await UserRepository.get_user_by_id(r["user_id"])
             r["case_name"] = case["name"] if case else None
             r["user_name"] = user["name"] if user else None
@@ -21,7 +21,7 @@ class FormService:
         if not record:
             raise HTTPException(status_code=404, detail="not found")
         # find case/user name
-        case = await CaseRepository.get_by_id(record["case_id"])
+        case = await CaseRepository.get_case_by_id(record["case_id"])
         user = await UserRepository.get_user_by_id(record["user_id"])
         record["case_name"] = case["name"] if case else None
         record["user_name"] = user["name"] if user else None
