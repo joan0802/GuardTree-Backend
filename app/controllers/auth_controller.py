@@ -20,6 +20,13 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
             headers={"WWW-Authenticate": "Bearer"},
         )
     
+    if user.get("activate", True) is False:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Account is inactive",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+        
     access_token = create_access_token(data={"sub": str(user["id"])})
     
     return {

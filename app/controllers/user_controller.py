@@ -77,12 +77,14 @@ async def update_user_role(
     """
     return await UserService.update_user_role(user_id, role_data)
 
-@router.delete("/{user_id}")
-async def delete_user(
+@router.put("/{user_id}/activate", response_model=User)
+async def update_user_activation(
     user_id: int,
+    activate: bool,
     current_user: Dict[str, Any] = Depends(get_current_admin_user)
 ):
     """
-    Delete a user (admin only)
+    Activate or deactivate a user (admin only)
     """
-    return await UserService.delete_user(user_id) 
+    user_data = UserUpdate(activate=activate)
+    return await UserService.update_user(user_id, user_data)

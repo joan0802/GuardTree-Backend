@@ -117,18 +117,3 @@ class UserService:
                 detail="Failed to update password"
             )
         return {"message": "Password updated successfully"}
-    
-    @staticmethod
-    async def delete_user(user_id: int) -> Dict[str, str]:
-        """Delete a user"""
-        # Check if user exists
-        await UserService.get_user_by_id(user_id)
-        
-        # Delete user
-        success = await UserRepository.delete_user(user_id)
-        if not success:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="Failed to delete user"
-            )
-        return {"message": "User deleted successfully"} 

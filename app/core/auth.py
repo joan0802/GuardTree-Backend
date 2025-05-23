@@ -39,6 +39,7 @@ async def authenticate_user(email: str, password: str) -> Optional[Dict[str, Any
         return None
     if not UserRepository.verify_password(password, user["password"]):
         return None
+    # The activate check is already handled in the login endpoint in auth_controller.py
     return user
 
 async def get_current_user(token: str = Depends(oauth2_scheme)) -> Dict[str, Any]:
