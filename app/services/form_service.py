@@ -19,7 +19,7 @@ class FormService:
     async def get_by_id(form_id):
         record = await FormRepository.get_by_id(form_id)
         if not record:
-            raise HTTPException(status_code=404, detail="not found")
+            raise HTTPException(status_code=404, detail="Form not found")
         # find case/user name
         case = await CaseRepository.get_case_by_id(record["case_id"])
         user = await UserRepository.get_user_by_id(record["user_id"])
