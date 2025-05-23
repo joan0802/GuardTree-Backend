@@ -3,7 +3,7 @@ from datetime import datetime
 from app.core.supabase_client import SupabaseService
 
 class LLMRepository:
-    FILLED_TABLE = "LifeSupportFormFilled"
+    FILLED_TABLE = "forms"
     ANALYSIS_TABLE = "LifeSupportFormAnalysis"
 
     @staticmethod

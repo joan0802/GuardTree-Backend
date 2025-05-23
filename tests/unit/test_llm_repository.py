@@ -15,7 +15,7 @@ async def test_get_question_value(mock_query_field_by_conditions):
     result = await LLMRepository.get_question_value("case123", "2025", "questions_A")
 
     mock_query_field_by_conditions.assert_called_once_with(
-        "LifeSupportFormFilled",
+        "forms",
         {"case_id": "case123", "year": "2025"},
         "questions_A"
     )
