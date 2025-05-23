@@ -1,29 +1,7 @@
 import pytest
 from app.services.form_service import FormService
 from fastapi import HTTPException
-from app.repositories.case_repository import CaseRepository
-from app.repositories.user_repository import UserRepository
-from app.repositories.form_repository import FormRepository
-
-@pytest.fixture(autouse=True)
-async def setup_case_and_user():
-    try:
-        await CaseRepository.delete_case(1)
-    except Exception:
-        pass
-    try:
-        await UserRepository.delete_user(1)
-    except Exception:
-        pass
-    await CaseRepository.create_case({"id": 1, "name": "測試個案"})
-    await UserRepository.create_user({
-        "id": 1,
-        "name": "測試用戶",
-        "password": "test123",
-        "role": "user",
-        "email": "test@example.com"
-    })
-    yield
+from unittest.mock import AsyncMock, patch
 
 @pytest.fixture
 def valid_form_record_data():
@@ -43,70 +21,58 @@ def valid_form_record_data():
         "form_G": [],
     }
 
-@pytest.fixture
-def invalid_case_form_record_data(valid_form_record_data):
-    d = valid_form_record_data.copy()
-    d["case_id"] = 9999  # not exist
-    return d
-
-@pytest.fixture
-def invalid_user_form_record_data(valid_form_record_data):
-    d = valid_form_record_data.copy()
-    d["user_id"] = 9999  # not exist
-    return d
+@pytest.mark.asyncio
+async def test_create_success(valid_form_record_data):
+    with patch("app.repositories.case_repository.CaseRepository.get_case_by_id", AsyncMock(return_value={"id": 1, "name": "test case"})), \
+         patch("app.repositories.user_repository.UserRepository.get_user_by_id", AsyncMock(return_value={"id": 1, "name": "test user"})), \
+         patch("app.repositories.form_repository.FormRepository.create", AsyncMock(return_value={"id": 123, **valid_form_record_data})):
+        created = await FormService.create(valid_form_record_data)
+        assert created["id"] == 123
+        assert created["form_A"][0]["activity"] == valid_form_record_data["form_A"][0]["activity"]
 
 @pytest.mark.asyncio
-async def test_create_get_update_delete(valid_form_record_data):
-
-    print(valid_form_record_data)
-    # Create
-    created = await FormService.create(valid_form_record_data)
-    form_id = created["id"]
-    assert created["form_A"][0]["activity"] == valid_form_record_data["form_A"][0]["activity"]
-
-    # Get by id
-    got = await FormService.get_by_id(form_id)
-    assert got["id"] == form_id
-
-    # Get all
-    all_forms = await FormService.get_all()
-    assert any(f["id"] == form_id for f in all_forms)
-    
-    # Delete
-    result = await FormService.delete(form_id)
-    assert result["message"] == "Deleted successfully"
-
-    # Confirm delete
-    with pytest.raises(Exception):
-        await FormService.get_by_id(form_id)
-
-@staticmethod
-async def create(data):
-    case_id = data["case_id"]
-    user_id = data["user_id"]
-    case = await CaseRepository.get_by_id(case_id)
-    if not case:
-        raise HTTPException(status_code=400, detail="case_id not found")
-    user = await UserRepository.get_user_by_id(user_id)
-    if not user:
-        raise HTTPException(status_code=400, detail="user_id not found")
-    data["case_name"] = case["name"]
-    data["user_name"] = user["name"]
-    return await FormRepository.create(data)
+async def test_create_fail_case(valid_form_record_data):
+    with patch("app.repositories.case_repository.CaseRepository.get_case_by_id", AsyncMock(return_value=None)), \
+         patch("app.repositories.user_repository.UserRepository.get_user_by_id", AsyncMock(return_value={"id": 1, "name": "測試用戶"})):
+        with pytest.raises(HTTPException) as excinfo:
+            await FormService.create(valid_form_record_data)
+        assert excinfo.value.detail == "case_id not found"
 
 @pytest.mark.asyncio
-async def test_create_success(valid_form_record_data, setup_case_and_user):
-    created = await FormService.create(valid_form_record_data)
-    assert created["form_A"][0]["activity"] == valid_form_record_data["form_A"][0]["activity"]
+async def test_create_fail_user(valid_form_record_data):
+    with patch("app.repositories.case_repository.CaseRepository.get_case_by_id", AsyncMock(return_value={"id": 1, "name": "測試個案"})), \
+         patch("app.repositories.user_repository.UserRepository.get_user_by_id", AsyncMock(return_value=None)):
+        with pytest.raises(HTTPException) as excinfo:
+            await FormService.create(valid_form_record_data)
+        assert excinfo.value.detail == "user_id not found"
 
 @pytest.mark.asyncio
-async def test_create_fail_case(invalid_case_form_record_data, setup_case_and_user):
-    with pytest.raises(HTTPException) as excinfo:
-        await FormService.create(invalid_case_form_record_data)
-    assert excinfo.value.detail == "case_id not found"
+async def test_get_by_id_success(valid_form_record_data):
+    with patch("app.repositories.form_repository.FormRepository.get_by_id", AsyncMock(return_value={"id": 123, **valid_form_record_data})), \
+         patch("app.repositories.case_repository.CaseRepository.get_case_by_id", AsyncMock(return_value={"id": 1, "name": "test case"})), \
+         patch("app.repositories.user_repository.UserRepository.get_user_by_id", AsyncMock(return_value={"id": 1, "name": "test user"})):
+        got = await FormService.get_by_id(123)
+        assert got["id"] == 123
+        assert got["case_name"] == "test case"
+        assert got["user_name"] == "test user"
 
 @pytest.mark.asyncio
-async def test_create_fail_user(invalid_user_form_record_data, setup_case_and_user):
-    with pytest.raises(HTTPException) as excinfo:
-        await FormService.create(invalid_user_form_record_data)
-    assert excinfo.value.detail == "user_id not found"
+async def test_get_by_id_not_found():
+    with patch("app.repositories.form_repository.FormRepository.get_by_id", AsyncMock(return_value=None)):
+        with pytest.raises(HTTPException) as excinfo:
+            await FormService.get_by_id(999)
+        assert excinfo.value.status_code == 404
+
+@pytest.mark.asyncio
+async def test_delete_success(valid_form_record_data):
+    with patch("app.repositories.form_repository.FormRepository.get_by_id", AsyncMock(return_value={"id": 123, **valid_form_record_data})), \
+         patch("app.repositories.form_repository.FormRepository.delete", AsyncMock(return_value=True)):
+        result = await FormService.delete(123)
+        assert result["message"] == "Deleted successfully"
+
+@pytest.mark.asyncio
+async def test_delete_not_found():
+    with patch("app.repositories.form_repository.FormRepository.get_by_id", AsyncMock(return_value=None)):
+        with pytest.raises(HTTPException) as excinfo:
+            await FormService.delete(999)
+        assert excinfo.value.status_code == 404

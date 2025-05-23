@@ -1,12 +1,12 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List
+from typing import Optional, List, Required
 from datetime import date, datetime
 
 
 class CaseBase(BaseModel):
     name: str
     birthdate: date
-    caseDescription: str
+    caseDescription: Optional[str]
     gender: str
     types: List[str]
 

@@ -1,15 +1,15 @@
 from fastapi import APIRouter, Depends, status
 from typing import List
-from app.models.form import FormRecordCreate, FormRecord
+from app.models.form import FormRecordCreate, FormRecord, FormRecordResponse
 from app.services.form_service import FormService
 
 router = APIRouter(prefix="/forms", tags=["forms"])
 
-@router.get("/", response_model=List[FormRecord])
+@router.get("/", response_model=List[FormRecordResponse])
 async def get_all():
     return await FormService.get_all()
 
-@router.get("/{form_id}", response_model=FormRecord)
+@router.get("/{form_id}", response_model=FormRecordResponse)
 async def get_by_id(form_id: int):
     return await FormService.get_by_id(form_id)
 

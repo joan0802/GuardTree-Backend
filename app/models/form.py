@@ -23,10 +23,12 @@ class FormRecordCreate(BaseModel):
 
 class FormRecord(FormRecordCreate):
     id: int
-    case_name: Optional[str] = None
-    user_name: Optional[str] = None
     created_at: datetime
     updated_at: datetime
 
     class Config:
         from_attributes = True
+
+class FormRecordResponse(FormRecord):
+    case_name: Optional[str] = None
+    user_name: Optional[str] = None
