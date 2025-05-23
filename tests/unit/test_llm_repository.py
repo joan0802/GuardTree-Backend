@@ -67,11 +67,11 @@ async def test_get_analysis_result(mock_query_field_by_conditions):
     mock_result = {"id": 1, "summary": "some summary"}
     mock_query_field_by_conditions.return_value = mock_result
 
-    result = await LLMRepository.get_analysis_result(1, "questions_A")
+    result = await LLMRepository.get_analysis_result(1, "question_A")
 
     mock_query_field_by_conditions.assert_called_once_with(
         "LifeSupportFormAnalysis",
-        {"filled_form_id": 1, "question_field": "questions_A"},
-        "questions_A"
+        {"filled_form_id": 1, "question_field": "question_A"},
+        "question_A"
     )
     assert result == mock_result

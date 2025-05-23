@@ -47,10 +47,10 @@ class LLMService:
         form_data = await LLMRepository.get_question_value(case_id=case_id, year=year, question_field=question_field)
         if not form_data:
             raise ValueError(f"Form not found")
-        
+        print(f"form_data: {form_data}")
         # 檢查是否已經分析過
         existing_result = await LLMRepository.get_analysis_result(
-            filled_form_id=form_data["id"],
+            filled_form_id=form_data[0]["id"],
             question_field=question_field
         )
         if existing_result:

@@ -1,21 +1,22 @@
 from fastapi import APIRouter, Depends, HTTPException
-from typing import Dict, Any
+from typing import Dict, Any, List
 
 from app.services.llm_service import LLMService
-from app.core.auth import get_current_user
+from app.models.form import FormItem
 
 router = APIRouter(prefix="/llm", tags=["llm"])
 
-@router.post("/analyze/{form_id}", response_model=Dict[str, Any])
+@router.post("/analyze/{case_id}", response_model=Dict[str, Any])
 async def analyze_form_data(
-    form_id: int,
-    current_user: Dict[str, Any] = Depends(get_current_user)
+    case_id: int,
+    year: int,
+    question_field: str,
 ):
     """
     使用 LLM 對指定表單資料進行分析，回傳分析結果，並將結果寫入資料庫
     """
     try:
-        result = await LLMService.analyze_case(form_id)
+        result = await LLMService.analyze_case(case_id, year, question_field)
         return result
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
