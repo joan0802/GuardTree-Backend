@@ -80,3 +80,19 @@ class SupabaseService:
         if response.data and field in response.data[0]:
             return response.data[0][field]
         return None
+    
+    @staticmethod
+    async def query_multiple_fields_by_conditions(
+        table: str,
+        filters: Dict[str, Any],
+        fields: List[str]
+    ) -> Optional[Dict[str, Any]]:
+        """Query multiple field values with multiple conditions"""
+        query = supabase.table(table).select(",".join(fields))
+        for key, value in filters.items():
+            query = query.eq(key, value)
+        response = query.execute()
+        if response.data:
+            return response.data[0]
+        return None
+
