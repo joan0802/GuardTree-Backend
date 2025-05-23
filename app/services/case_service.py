@@ -1,16 +1,19 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from fastapi import HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from app.repositories.case_repository import CaseRepository
 
+from app.models.case import Case, CaseCreate, CaseUpdate
+
+
 class CaseService:
     @staticmethod
-    async def get_all_cases() -> List[Dict[str, Any]]:
+    async def get_all_cases() -> List[Case]:
         """Get all cases"""
         return await CaseRepository.get_all_cases()
 
     @staticmethod
-    async def get_case_by_id(case_id: int) -> Dict[str, Any]:
+    async def get_case_by_id(case_id: int) -> Case:
         """Get a specific case by ID"""
         case = await CaseRepository.get_case_by_id(case_id)
         if not case:
@@ -21,13 +24,13 @@ class CaseService:
         return case
 
     @staticmethod
-    async def create_case(case_data: Dict[str, Any]) -> Dict[str, Any]:
+    async def create_case(case_data: CaseCreate) -> Case:
         """Create a new case"""
         case_data = jsonable_encoder(case_data) # deal with date
         return await CaseRepository.create_case(case_data)
 
     @staticmethod
-    async def update_case(case_id: int, case_data: Dict[str, Any]) -> Dict[str, Any]:
+    async def update_case(case_id: int, case_data: CaseUpdate) -> Case:
         """Update an existing case"""
         case = await CaseRepository.get_case_by_id(case_id)
         if not case:
@@ -35,6 +38,7 @@ class CaseService:
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail=f"Case with ID {case_id} not found"
             )
+        case_data = jsonable_encoder(case_data)
         updated_case = await CaseRepository.update_case(case_id, case_data)
         if not updated_case:
             raise HTTPException(
@@ -44,7 +48,7 @@ class CaseService:
         return updated_case
 
     @staticmethod
-    async def delete_case(case_id: int) -> Dict[str, str]:
+    async def delete_case(case_id: int) -> Case:
         """Delete a case"""
         case = await CaseRepository.get_case_by_id(case_id)
         if not case:
