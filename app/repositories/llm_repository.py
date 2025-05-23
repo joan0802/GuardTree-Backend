@@ -42,8 +42,20 @@ class LLMRepository:
             "filled_form_id": filled_form_id,
             "question_field": question_field
         }
-        return await SupabaseService.query_field_by_conditions(
+        summary_result =  await SupabaseService.query_field_by_conditions(
             LLMRepository.ANALYSIS_TABLE,
             filters,
-            question_field
+            "summary"
         )
+        suggestions_result =  await SupabaseService.query_field_by_conditions(
+            LLMRepository.ANALYSIS_TABLE,
+            filters,
+            "suggestions"
+        )
+        if not summary_result:
+            return None
+
+        return {
+            "summary": summary_result,
+            "suggestions": suggestions_result
+        }

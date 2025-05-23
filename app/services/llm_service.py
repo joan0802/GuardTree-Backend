@@ -1,5 +1,6 @@
 from app.repositories.llm_repository import LLMRepository
 from app.core.llm_pipeline import llm_pipeline
+import json
 
 class LLMService:
     @staticmethod
@@ -8,8 +9,9 @@ class LLMService:
         根據分析類型與個案資料組 prompt 字串
         """
         base_info = "以下是服務對象的日常生活功能評量資料：\n"
-        for key, value in case_data.items():
-            base_info += f"{key}：{value}\n"
+        # for key, value in case_data.items():
+        #     base_info += f"{key}：{value}\n"
+        base_info += str(case_data)
 
         instruction = ""
         if analysis_type == "summary":
@@ -37,6 +39,14 @@ class LLMService:
         # return result
         response = llm_pipeline(prompt)
         return response
+    
+    @staticmethod
+    def clean_json_text(response_text: str) -> str:
+        if response_text.startswith("```json"):
+            response_text = response_text[len("```json"):].strip()
+        if response_text.endswith("```"):
+            response_text = response_text[:-3].strip()
+        return response_text
 
     @staticmethod
     async def analyze_case(case_id: int, year: str, question_field: str) -> dict:
@@ -44,11 +54,13 @@ class LLMService:
         執行所有分析項目，回傳 dict 結果，並寫回資料庫
         """
         # 撈資料
-        form_id = await LLMRepository.get_question_value(case_id=case_id, year=year, question_field=form_id)
         form_data = await LLMRepository.get_question_value(case_id=case_id, year=year, question_field=question_field)
         if not form_data:
             raise ValueError(f"Form not found")
         print(f"form_data: {form_data}")
+        form_id = await LLMRepository.get_question_value(case_id=case_id, year=year, question_field="id")
+        print(f"form_id: {form_id}")
+
         # 檢查是否已經分析過
         existing_result = await LLMRepository.get_analysis_result(
             filled_form_id=form_id,
@@ -57,38 +69,43 @@ class LLMService:
         if existing_result:
             return existing_result
 
-        # 智能摘要
-        summary_prompt = LLMService.build_prompt(form_data, "summary")
-        summary_result = LLMService.run_llm(summary_prompt)
+        # 建立一個總 prompt，請 LLM 直接回傳符合 JSON 格式的結果
+        prompt = f"""
+            你是一個繁體中文專家系統，請根據以下個案表單資料，分析並產出以下格式的 JSON 結果：
 
-        # 主要優勢
-        strength_prompt = LLMService.build_prompt(form_data, "strength")
-        strengths_result = LLMService.run_llm(strength_prompt)
+            表單資料：
+            {form_data}
 
-        # 需要關注
-        concern_prompt = LLMService.build_prompt(form_data, "concern")
-        concerns_result = LLMService.run_llm(concern_prompt)
+            其中，activity 代表活動內容，item 代表項目，subitem 代表細項（若為null 可忽略），core_area 代表這份表單所對應代的核心能力領域，
+            support type 為教保員評估服務對象在這個項目的分數：4 代表需完全肢體協助；3 代表需部份身體協助； 2 代表需示範/口頭/手勢提示；1 代表須監督陪同；0 代表不須協助；null或None 代表不適用（可忽略此項評分）。
 
-        # 優先改善項目
-        priority_prompt = LLMService.build_prompt(form_data, "priority")
-        priority_result = LLMService.run_llm(priority_prompt)
+            請輸出以下 JSON 格式：
+            {{
+            "summary": {{
+                "summary": "請提供智能摘要。",
+                "strengths": "請列出個案的主要優勢。",
+                "concerns": "請列出個案需關注的事項。",
+                "priority_item": "請列出優先改善項目。"
+            }},
+            "suggestions": {{
+                "strategy": "請提供策略建議。"
+            }}
+            }}
 
-        # 策略建議
-        strategy_prompt = LLMService.build_prompt(form_data, "strategy")
-        strategy_result = LLMService.run_llm(strategy_prompt)
+            注意：
+            - 請完整回傳 JSON 格式
+            - 不要遺漏任何欄位
+            - 字串內禁止換行
+            """
 
-        # 整理成json格式
-        results = {
-            "summary": {
-                "summary": summary_result,
-                "strengths": strengths_result,
-                "concerns": concerns_result,
-                "priority_item": priority_result
-            },
-            "suggestions": {
-                "strategy": strategy_result
-            }
-        }
+        response_text = LLMService.run_llm(prompt)
+        print(f"response_text: {response_text}")
+        # 嘗試解析成 JSON
+        response_text = LLMService.clean_json_text(response_text)
+        try:
+            results = json.loads(response_text)
+        except json.JSONDecodeError:
+            raise ValueError("LLM 回傳的格式無法解析成 JSON")
 
         # 寫回資料庫
         await LLMRepository.save_analysis_result(
