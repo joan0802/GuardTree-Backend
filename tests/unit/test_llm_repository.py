@@ -1,12 +1,11 @@
 import pytest
-from unittest.mock import patch, AsyncMock
+from unittest.mock import patch, AsyncMock, call
 from datetime import datetime
 from app.repositories.llm_repository import LLMRepository
 
-print("test_llm_repository loaded")
 
 @pytest.mark.asyncio
-@patch('app.core.supabase_client.SupabaseService.query_field_by_conditions')
+@patch('app.core.supabase_client.SupabaseService.query_field_by_conditions', new_callable=AsyncMock)
 async def test_get_question_value(mock_query_field_by_conditions):
     """Test getting a question value"""
     mock_result = {"id": 1, "questions_A": "test answer"}
@@ -14,16 +13,15 @@ async def test_get_question_value(mock_query_field_by_conditions):
 
     result = await LLMRepository.get_question_value("case123", "2025", "questions_A")
 
-    mock_query_field_by_conditions.assert_called_once_with(
+    mock_query_field_by_conditions.assert_awaited_once_with(
         "forms",
         {"case_id": "case123", "year": "2025"},
         "questions_A"
     )
     assert result == mock_result
 
-
 @pytest.mark.asyncio
-@patch('app.core.supabase_client.SupabaseService.create')
+@patch('app.core.supabase_client.SupabaseService.create', new_callable=AsyncMock)
 async def test_save_analysis_result(mock_create):
     """Test saving analysis result"""
     mock_result = {"id": 1}
@@ -44,7 +42,7 @@ async def test_save_analysis_result(mock_create):
         question_field="questions_A"
     )
 
-    mock_create.assert_called_once()
+    mock_create.assert_awaited_once()
     args, kwargs = mock_create.call_args
     assert args[0] == "LifeSupportFormAnalysis"
     data = args[1]
@@ -59,19 +57,33 @@ async def test_save_analysis_result(mock_create):
 
     assert result == mock_result
 
-
 @pytest.mark.asyncio
-@patch('app.core.supabase_client.SupabaseService.query_field_by_conditions')
+@patch('app.core.supabase_client.SupabaseService.query_field_by_conditions', new_callable=AsyncMock)
 async def test_get_analysis_result(mock_query_field_by_conditions):
     """Test getting an analysis result"""
-    mock_result = {"id": 1, "summary": "some summary"}
-    mock_query_field_by_conditions.return_value = mock_result
+    # Simulate different results for summary and suggestions
+    mock_query_field_by_conditions.side_effect = [
+        {"id": 1, "summary": "some summary"},      # for summary
+        {"id": 1, "suggestions": "some suggestion"}  # for suggestions
+    ]
 
     result = await LLMRepository.get_analysis_result(1, "question_A")
 
-    mock_query_field_by_conditions.assert_called_once_with(
+    expected_summary_call = call(
         "LifeSupportFormAnalysis",
         {"filled_form_id": 1, "question_field": "question_A"},
-        "question_A"
+        "summary"
     )
-    assert result == mock_result
+    expected_suggestions_call = call(
+        "LifeSupportFormAnalysis",
+        {"filled_form_id": 1, "question_field": "question_A"},
+        "suggestions"
+    )
+    assert expected_summary_call in mock_query_field_by_conditions.await_args_list
+    assert expected_suggestions_call in mock_query_field_by_conditions.await_args_list
+
+    expected_result = {
+        "summary": {"id": 1, "summary": "some summary"},
+        "suggestions": {"id": 1, "suggestions": "some suggestion"}
+    }
+    assert result == expected_result
