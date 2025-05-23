@@ -1,18 +1,18 @@
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Optional
 from fastapi import HTTPException, status
 
-from app.repositories.user_repository import UserRepository
+from app.repositories.user_repository import UserRepository, UserDict
 from app.models.user import UserCreate, UserUpdate, UserUpdatePassword, UserUpdateRole
 
 
 class UserService:
     @staticmethod
-    async def get_all_users() -> List[Dict[str, Any]]:
+    async def get_all_users() -> List[UserDict]:
         """Get all users"""
         return await UserRepository.get_all_users()
     
     @staticmethod
-    async def get_user_by_id(user_id: int) -> Dict[str, Any]:
+    async def get_user_by_id(user_id: int) -> UserDict:
         """Get a specific user by ID"""
         user = await UserRepository.get_user_by_id(user_id)
         if not user:
@@ -23,7 +23,7 @@ class UserService:
         return user
     
     @staticmethod
-    async def create_user(user_data: UserCreate) -> Dict[str, Any]:
+    async def create_user(user_data: UserCreate) -> UserDict:
         """Create a new user"""
         # Check if email already exists
         existing_user = await UserRepository.get_user_by_email(user_data.email)
@@ -35,10 +35,15 @@ class UserService:
         
         # Create user
         user_dict = user_data.model_dump()
+        
+        # Ensure proper types
+        if "activate" in user_dict:
+            user_dict["activate"] = bool(user_dict["activate"])
+            
         return await UserRepository.create_user(user_dict)
     
     @staticmethod
-    async def update_user(user_id: int, user_data: UserUpdate) -> Dict[str, Any]:
+    async def update_user(user_id: int, user_data: UserUpdate) -> UserDict:
         """Update user information"""
         # Check if user exists
         user = await UserService.get_user_by_id(user_id)
@@ -54,6 +59,11 @@ class UserService:
         
         # Update user
         update_data = {k: v for k, v in user_data.model_dump().items() if v is not None}
+        
+        # Ensure proper types
+        if "activate" in update_data:
+            update_data["activate"] = bool(update_data["activate"])
+            
         if not update_data:
             return user
         
@@ -66,7 +76,7 @@ class UserService:
         return updated_user
     
     @staticmethod
-    async def update_user_role(user_id: int, role_data: UserUpdateRole) -> Dict[str, Any]:
+    async def update_user_role(user_id: int, role_data: UserUpdateRole) -> UserDict:
         """Update user role (admin only)"""
         # Check if user exists
         await UserService.get_user_by_id(user_id)
@@ -91,7 +101,7 @@ class UserService:
     async def update_password(
         user_id: int, 
         password_data: UserUpdatePassword
-    ) -> Dict[str, Any]:
+    ) -> Dict[str, str]:
         """Update user password"""
         # Check if user exists
         user = await UserService.get_user_by_id(user_id)
