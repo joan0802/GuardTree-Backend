@@ -18,7 +18,6 @@ class UserCreate(UserBase):
 class UserUpdate(BaseModel):
     name: Optional[str] = None
     email: Optional[EmailStr] = None
-    activate: Optional[bool] = None
 
 
 class UserUpdatePassword(BaseModel):
@@ -28,7 +27,14 @@ class UserUpdatePassword(BaseModel):
 
 class UserUpdateRole(BaseModel):
     role: str
-    isAdmin: Optional[bool] = None
+
+
+class UserUpdateActivate(BaseModel):
+    activate: bool
+
+
+class UserUpdateAdmin(BaseModel):
+    isAdmin: bool
 
 
 class User(UserBase):
