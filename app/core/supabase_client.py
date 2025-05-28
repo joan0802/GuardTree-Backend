@@ -65,3 +65,20 @@ class SupabaseService:
             
         response = query.execute()
         return response.data 
+    
+    @staticmethod
+    async def query_field_by_conditions(
+        table: str,
+        filters: Dict[str, Any],
+        field: str
+    ) -> Optional[Any]:
+        """Query a single field value with multiple conditions"""
+        query = supabase.table(table).select(field)
+        for key, value in filters.items():
+            query = query.eq(key, value)
+        response = query.execute()
+        if response.data and field in response.data[0]:
+            return response.data[0][field]
+        return None
+    
+
