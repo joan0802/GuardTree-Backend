@@ -37,6 +37,8 @@ async def get_analyzed_result(
     """
     try:
         result = await LLMService.get_analysis_result(case_id, year, question_field)
+        if not result:
+            raise ValueError("分析結果不存在")
         return result
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))

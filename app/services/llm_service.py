@@ -49,7 +49,7 @@ class LLMService:
             question_field=question_field
         )
 
-        return analysis_result
+        return analysis_result.dict()
     
     @staticmethod
     async def get_analysis_result(case_id: int, year: str, question_field: str):
