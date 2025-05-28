@@ -1,7 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from typing import List, Dict, Any
 
-from app.models.user import UserCreate, UserUpdate, User, UserUpdatePassword, UserUpdateRole
+from app.models.user import (
+    UserCreate, UserUpdate, User, UserUpdatePassword, UserUpdateRole,
+    UserUpdateActivate, UserUpdateAdmin
+)
 from app.services.user_service import UserService
 from app.core.auth import get_current_user, get_current_admin_user
 
@@ -77,6 +80,28 @@ async def update_user_role(
     """
     return await UserService.update_user_role(user_id, role_data)
 
+@router.put("/{user_id}/admin", response_model=User)
+async def update_user_admin(
+    user_id: int,
+    admin_data: UserUpdateAdmin,
+    current_user: Dict[str, Any] = Depends(get_current_admin_user)
+):
+    """
+    Update a user's admin status (admin only)
+    """
+    return await UserService.update_user_admin(user_id, admin_data, current_user["id"])
+
+@router.put("/{user_id}/activate", response_model=User)
+async def update_user_activate(
+    user_id: int,
+    activate_data: UserUpdateActivate,
+    current_user: Dict[str, Any] = Depends(get_current_admin_user)
+):
+    """
+    Update a user's activation status (admin only)
+    """
+    return await UserService.update_user_activate(user_id, activate_data, current_user["id"])
+
 @router.delete("/{user_id}")
 async def delete_user(
     user_id: int,
@@ -85,4 +110,4 @@ async def delete_user(
     """
     Delete a user (admin only)
     """
-    return await UserService.delete_user(user_id) 
+    return await UserService.delete_user(user_id, current_user["id"]) 

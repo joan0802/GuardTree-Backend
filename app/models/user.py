@@ -12,6 +12,7 @@ class UserCreate(UserBase):
     password: str
     role: str = "user"
     isAdmin: bool = False
+    activate: bool = True
 
 
 class UserUpdate(BaseModel):
@@ -26,7 +27,14 @@ class UserUpdatePassword(BaseModel):
 
 class UserUpdateRole(BaseModel):
     role: str
-    isAdmin: Optional[bool] = None
+
+
+class UserUpdateActivate(BaseModel):
+    activate: bool
+
+
+class UserUpdateAdmin(BaseModel):
+    isAdmin: bool
 
 
 class User(UserBase):
@@ -34,6 +42,7 @@ class User(UserBase):
     role: str
     created_at: datetime
     isAdmin: bool
+    activate: bool = True
 
     class Config:
         from_attributes = True 
