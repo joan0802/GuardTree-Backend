@@ -86,7 +86,3 @@ class UserRepository:
             plain_password.encode('utf-8'),
             hashed_password.encode('utf-8')
         )
-    
-
-if __name__ == "__main__":
-    print(UserRepository._hash_password("guardtree2025"))
