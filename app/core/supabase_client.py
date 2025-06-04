@@ -81,4 +81,11 @@ class SupabaseService:
             return response.data[0][field]
         return None
     
-
+    @staticmethod
+    async def get_by_filter(table: str, filters: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """Get all records by filter"""
+        response = supabase.table(table).select("*")
+        for key, value in filters.items():
+            response = response.eq(key, value)
+        response = response.execute()
+        return response.data

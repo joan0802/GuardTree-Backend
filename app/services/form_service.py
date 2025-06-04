@@ -58,3 +58,13 @@ class FormService:
         if not user:
             raise HTTPException(status_code=400, detail="user_id not found")
         return await FormRepository.update(form_id, data)
+
+    @staticmethod
+    async def get_by_case_id(case_id):
+        records = await FormRepository.get_by_case_id(case_id)
+        for r in records:
+            case = await CaseRepository.get_case_by_id(r["case_id"])
+            user = await UserRepository.get_user_by_id(r["user_id"])
+            r["case_name"] = case["name"] if case else None
+            r["user_name"] = user["name"] if user else None
+        return records
