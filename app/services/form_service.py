@@ -52,6 +52,9 @@ class FormService:
 
     @staticmethod
     async def get_by_case_id(case_id):
+        case = await CaseRepository.get_case_by_id(case_id)
+        if not case:
+            raise HTTPException(status_code=400, detail="case_id not found")
         records = await FormRepository.get_by_case_id(case_id)
         for r in records:
             for k in list(r.keys()):
