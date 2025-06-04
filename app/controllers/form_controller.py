@@ -21,3 +21,7 @@ async def create(form_data: FormRecordCreate, current_user: dict = Depends(get_c
 @router.delete("/{form_id}")
 async def delete(form_id: int, current_user: dict = Depends(get_current_user)):
     return await FormService.delete(form_id)
+
+@router.get("/case/{case_id}", response_model=List[FormRecordResponse])
+async def get_by_case_id(case_id: int, current_user: dict = Depends(get_current_user)):
+    return await FormService.get_by_case_id(case_id)
