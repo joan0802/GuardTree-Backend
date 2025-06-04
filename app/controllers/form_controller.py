@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, status
 from typing import List
-from app.models.form import FormRecordCreate, FormRecord, FormRecordResponse
+from app.models.form import FormRecordCreate, FormRecord, FormRecordResponse, FormMetadata
 from app.services.form_service import FormService
 from app.core.auth import get_current_user
 
 router = APIRouter(prefix="/forms", tags=["forms"])
 
-@router.get("/", response_model=List[FormRecordResponse])
+@router.get("/", response_model=List[FormMetadata])
 async def get_all(current_user: dict = Depends(get_current_user)):
     return await FormService.get_all()
 

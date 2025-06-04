@@ -32,3 +32,12 @@ class FormRecord(FormRecordCreate):
 class FormRecordResponse(FormRecord):
     case_name: Optional[str] = None
     user_name: Optional[str] = None
+
+class FormMetadata(BaseModel):
+    id: int
+    case_id: int
+    user_id: int
+    created_at: datetime
+    updated_at: datetime
+    case_name: Optional[str]
+    user_name: Optional[str]
