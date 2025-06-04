@@ -7,8 +7,10 @@ class FormService:
     @staticmethod
     async def get_all():
         records = await FormRepository.get_all()
-        # batch find name (can be optimized to find all case/user at once)
         for r in records:
+            for k in list(r.keys()):
+                if k not in ["id", "case_id", "user_id", "year", "form_type", "created_at", "updated_at"]:
+                    r.pop(k, None)
             case = await CaseRepository.get_case_by_id(r["case_id"])
             user = await UserRepository.get_user_by_id(r["user_id"])
             r["case_name"] = case["name"] if case else None
@@ -37,7 +39,8 @@ class FormService:
         user = await UserRepository.get_user_by_id(user_id)
         if not user:
             raise HTTPException(status_code=400, detail="user_id not found")
-        return await FormRepository.create(data)
+        create_data = {k: data[k] for k in ["case_id", "user_id", "year", "form_type", "content"] if k in data}
+        return await FormRepository.create(create_data)
 
     @staticmethod
     async def delete(form_id: int):
@@ -48,17 +51,12 @@ class FormService:
         return {"message": "Deleted successfully"}
 
     @staticmethod
-    async def update(form_id, data):
-        form = await FormRepository.get_by_id(form_id)
-        if not form:
-            raise HTTPException(status_code=404, detail="Form not found")
-        update_data = {k: v for k, v in data.items() if v is not None}
-        return await FormRepository.update(form_id, update_data)
-
-    @staticmethod
     async def get_by_case_id(case_id):
         records = await FormRepository.get_by_case_id(case_id)
         for r in records:
+            for k in list(r.keys()):
+                if k not in ["id", "case_id", "user_id", "year", "form_type", "created_at", "updated_at"]:
+                    r.pop(k, None)
             case = await CaseRepository.get_case_by_id(r["case_id"])
             user = await UserRepository.get_user_by_id(r["user_id"])
             r["case_name"] = case["name"] if case else None

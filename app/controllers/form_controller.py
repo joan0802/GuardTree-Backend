@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, status
 from typing import List
-from app.models.form import FormRecordCreate, FormRecord, FormRecordResponse, FormMetadata, FormRecordUpdate
+from app.models.form import FormRecordCreate, FormRecord, FormRecordResponse, FormMetadata
 from app.services.form_service import FormService
 from app.core.auth import get_current_user
 
@@ -25,7 +25,3 @@ async def delete(form_id: int, current_user: dict = Depends(get_current_user)):
 @router.get("/case/{case_id}", response_model=List[FormMetadata])
 async def get_by_case_id(case_id: int, current_user: dict = Depends(get_current_user)):
     return await FormService.get_by_case_id(case_id)
-
-@router.put("/{form_id}", response_model=FormRecordResponse)
-async def update(form_id: int, form_data: FormRecordUpdate, current_user: dict = Depends(get_current_user)):
-    return await FormService.update(form_id, form_data.dict())
