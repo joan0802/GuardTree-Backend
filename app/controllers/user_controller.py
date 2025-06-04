@@ -84,6 +84,17 @@ async def get_user(
     """
     return await UserService.get_user_by_id(user_id)
 
+@router.put("/{user_id}/info", response_model=User)
+async def update_user_info(
+    user_id: int,
+    user_data: UserUpdate,
+    current_user: Dict[str, Any] = Depends(get_current_admin_user)
+):
+    """
+    Update a user's basic information (admin only)
+    """
+    return await UserService.update_user(user_id, user_data)
+
 @router.put("/{user_id}/role", response_model=User)
 async def update_user_role(
     user_id: int,
