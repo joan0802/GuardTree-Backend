@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, constr
 from typing import Optional
 from datetime import datetime
 
@@ -35,6 +35,10 @@ class UserUpdateActivate(BaseModel):
 
 class UserUpdateAdmin(BaseModel):
     isAdmin: bool
+
+
+class AdminUpdateUserPassword(BaseModel):
+    new_password: str
 
 
 class User(UserBase):

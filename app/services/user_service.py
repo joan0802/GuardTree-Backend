@@ -182,3 +182,32 @@ class UserService:
                 detail="Failed to delete user"
             )
         return {"message": "User deleted successfully"}
+
+    @staticmethod
+    async def admin_update_user_password(
+        user_id: int,
+        new_password: str,
+        current_user_id: int
+    ) -> Dict[str, str]:
+        """Admin update user password directly"""
+        # Check if user exists
+        user = await UserService.get_user_by_id(user_id)
+        
+        # Prevent admin from using this endpoint to change their own password
+        if user_id == current_user_id:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Admin should use the regular password update endpoint for their own password"
+            )
+        
+        # Update password
+        updated_user = await UserRepository.update_password(
+            user_id, 
+            new_password
+        )
+        if not updated_user:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="Failed to update password"
+            )
+        return {"message": "Password updated successfully"}

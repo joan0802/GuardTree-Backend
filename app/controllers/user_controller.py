@@ -3,7 +3,7 @@ from typing import List, Dict, Any
 
 from app.models.user import (
     UserCreate, UserUpdate, User, UserUpdatePassword, UserUpdateRole,
-    UserUpdateActivate, UserUpdateAdmin
+    UserUpdateActivate, UserUpdateAdmin, AdminUpdateUserPassword
 )
 from app.services.user_service import UserService
 from app.core.auth import get_current_user, get_current_admin_user
@@ -57,6 +57,21 @@ async def update_current_user_password(
     Update current user's password
     """
     return await UserService.update_password(current_user["id"], password_data)
+
+@router.put("/{user_id}/admin-password")
+async def admin_update_user_password(
+    user_id: int,
+    password_data: AdminUpdateUserPassword,
+    current_user: Dict[str, Any] = Depends(get_current_admin_user)
+):
+    """
+    Update a user's password directly (admin only)
+    """
+    return await UserService.admin_update_user_password(
+        user_id=user_id,
+        new_password=password_data.new_password,
+        current_user_id=current_user["id"]
+    )
 
 # Admin routes with parameters - put after specific paths
 @router.get("/{user_id}", response_model=User)
