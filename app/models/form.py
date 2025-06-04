@@ -41,3 +41,13 @@ class FormMetadata(BaseModel):
     updated_at: datetime
     case_name: Optional[str]
     user_name: Optional[str]
+
+class FormRecordUpdate(BaseModel):
+    year: Optional[int] = None
+    form_A: Optional[List[FormItem]] = None
+    form_B: Optional[List[FormItem]] = None
+    form_C: Optional[List[FormItem]] = None
+    form_D: Optional[List[FormItem]] = None
+    form_E: Optional[List[FormItem]] = None
+    form_F: Optional[List[FormItem]] = None
+    form_G: Optional[List[FormItem]] = None
