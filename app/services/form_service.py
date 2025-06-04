@@ -49,15 +49,11 @@ class FormService:
 
     @staticmethod
     async def update(form_id, data):
-        case_id = data["case_id"]
-        user_id = data["user_id"]
-        case = await CaseRepository.get_case_by_id(case_id)
-        if not case:
-            raise HTTPException(status_code=400, detail="case_id not found")
-        user = await UserRepository.get_user_by_id(user_id)
-        if not user:
-            raise HTTPException(status_code=400, detail="user_id not found")
-        return await FormRepository.update(form_id, data)
+        form = await FormRepository.get_by_id(form_id)
+        if not form:
+            raise HTTPException(status_code=404, detail="Form not found")
+        update_data = {k: v for k, v in data.items() if v is not None}
+        return await FormRepository.update(form_id, update_data)
 
     @staticmethod
     async def get_by_case_id(case_id):
