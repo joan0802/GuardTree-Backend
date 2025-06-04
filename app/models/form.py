@@ -1,6 +1,16 @@
 from pydantic import BaseModel
 from typing import List, Optional
+from enum import Enum
 from datetime import datetime
+
+class FormType(str, Enum):
+    A = "A"
+    B = "B"
+    C = "C"
+    D = "D"
+    E = "E"
+    F = "F"
+    G = "G"
 
 class FormItem(BaseModel):
     activity: str
@@ -13,7 +23,7 @@ class FormRecordCreate(BaseModel):
     case_id: int
     user_id: int
     year: int
-    form_type: int
+    form_type: FormType
     content: List[FormItem]
 
 class FormRecord(FormRecordCreate):
@@ -34,10 +44,12 @@ class FormMetadata(BaseModel):
     user_id: int
     created_at: datetime
     updated_at: datetime
+    year: int
+    form_type: FormType
     case_name: Optional[str]
     user_name: Optional[str]
 
 class FormRecordUpdate(BaseModel):
     year: Optional[int] = None
-    form_type: Optional[int] = None
+    form_type: Optional[FormType] = None
     content: Optional[List[FormItem]] = None
