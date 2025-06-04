@@ -28,8 +28,3 @@ class FormRepository:
     async def get_by_case_id(case_id: int):
         """Get all form entries by case_id"""
         return await SupabaseService.get_by_filter(FormRepository.TABLE_NAME, {"case_id": case_id})
-
-    @staticmethod
-    async def update(row_id: int, data: dict):
-        """Update a form entry by ID"""
-        return await SupabaseService.update(FormRepository.TABLE_NAME, row_id, data)

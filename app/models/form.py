@@ -48,8 +48,3 @@ class FormMetadata(BaseModel):
     form_type: FormType
     case_name: Optional[str]
     user_name: Optional[str]
-
-class FormRecordUpdate(BaseModel):
-    year: Optional[int] = None
-    form_type: Optional[FormType] = None
-    content: Optional[List[FormItem]] = None

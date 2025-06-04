@@ -51,14 +51,6 @@ class FormService:
         return {"message": "Deleted successfully"}
 
     @staticmethod
-    async def update(form_id, data):
-        form = await FormRepository.get_by_id(form_id)
-        if not form:
-            raise HTTPException(status_code=404, detail="Form not found")
-        update_data = {k: v for k, v in data.items() if v is not None and k in ["year", "form_type", "content"]}
-        return await FormRepository.update(form_id, update_data)
-
-    @staticmethod
     async def get_by_case_id(case_id):
         records = await FormRepository.get_by_case_id(case_id)
         for r in records:
