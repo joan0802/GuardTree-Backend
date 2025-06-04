@@ -1,5 +1,5 @@
 {
-  "form_A": [
+  "A": [
     {
       "activity": "1. 使用廁所",
       "item": "1. 小便",
@@ -505,7 +505,7 @@
       "support_type": null
     }
   ],
-  "form_B": [
+  "B": [
     {
       "activity": "1. 往返社區內各地",
       "item": "1. 地點往返",
@@ -668,7 +668,7 @@
       "support_type": null
     }
   ],
-  "form_C": [
+  "C": [
     {
       "activity": "1. 在學習活動與他人互動",
       "item": "1. 在團體活動中能表達自己的想法",
@@ -1174,7 +1174,7 @@
       "support_type": null
     }
   ],
-  "form_D": [
+  "D": [
     {
       "activity": "1. 得到/適應工作",
       "item": "1. 工作意識",
@@ -1428,7 +1428,7 @@
       "support_type": null
     }
   ],
-  "form_E": [
+  "E": [
     {
       "activity": "1. 服用藥物與用藥安全",
       "item": "1. 配合醫生的囑咐吃藥/塗藥",
@@ -1661,7 +1661,7 @@
       "support_type": null
     }
   ],
-  "form_F": [
+  "F": [
     {
       "activity": "1. 與人合宜的互動溝通",
       "item": "1. 理解他人的口語/非口語溝通表達",
