@@ -13,13 +13,8 @@ class FormRecordCreate(BaseModel):
     case_id: int
     user_id: int
     year: int
-    form_A: List[FormItem]
-    form_B: List[FormItem]
-    form_C: List[FormItem]
-    form_D: List[FormItem]
-    form_E: List[FormItem]
-    form_F: List[FormItem]
-    form_G: List[FormItem]
+    form_type: int
+    content: List[FormItem]
 
 class FormRecord(FormRecordCreate):
     id: int
@@ -44,10 +39,5 @@ class FormMetadata(BaseModel):
 
 class FormRecordUpdate(BaseModel):
     year: Optional[int] = None
-    form_A: Optional[List[FormItem]] = None
-    form_B: Optional[List[FormItem]] = None
-    form_C: Optional[List[FormItem]] = None
-    form_D: Optional[List[FormItem]] = None
-    form_E: Optional[List[FormItem]] = None
-    form_F: Optional[List[FormItem]] = None
-    form_G: Optional[List[FormItem]] = None
+    form_type: Optional[int] = None
+    content: Optional[List[FormItem]] = None
