@@ -3,8 +3,7 @@ from fastapi import HTTPException, status
 
 from app.repositories.user_repository import UserRepository, UserDict
 from app.models.user import (
-    UserCreate, UserUpdate, UserUpdatePassword, UserUpdateRole,
-    UserUpdateActivate, UserUpdateAdmin
+    UserCreate, UserUpdate, AdminUserUpdate
 )
 
 
@@ -41,125 +40,146 @@ class UserService:
         return await UserRepository.create_user(user_dict)
     
     @staticmethod
-    async def update_user(user_id: int, user_data: UserUpdate) -> UserDict:
-        """Update user information"""
-        # Check if user exists
-        user = await UserService.get_user_by_id(user_id)
-        
-        # If email is changing, check if new email is already taken
-        if user_data.email and user_data.email != user["email"]:
-            existing_user = await UserRepository.get_user_by_email(user_data.email)
-            if existing_user:
+    async def admin_update_user(user_id: int, user_data: AdminUserUpdate, current_user_id: int) -> UserDict:
+        """Admin update user information - unified method for all admin updates"""
+        try:
+            # Check if user exists
+            user = await UserService.get_user_by_id(user_id)
+            print(f"Found user: {user}")
+            
+            # If email is changing, check if new email is already taken
+            if user_data.email and user_data.email != user["email"]:
+                existing_user = await UserRepository.get_user_by_email(user_data.email)
+                if existing_user:
+                    raise HTTPException(
+                        status_code=status.HTTP_400_BAD_REQUEST,
+                        detail="Email already registered"
+                    )
+            
+            # Business logic validations
+            
+            # Prevent admin from removing their own admin privileges
+            if user_id == current_user_id and user_data.isAdmin is False:
                 raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST,
-                    detail="Email already registered"
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="Admin users cannot remove their own admin privileges"
                 )
-        
-        # Update user
-        update_data = {k: v for k, v in user_data.model_dump().items() if v is not None}
-        if not update_data:
-            return user
-        
-        updated_user = await UserRepository.update_user(user_id, update_data)
-        if not updated_user:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="Failed to update user"
-            )
-        return updated_user
-    
+            
+            # Prevent admin from deactivating their own account
+            if user_id == current_user_id and user_data.activate is False:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="Admin users cannot deactivate their own account"
+                )
+            
+            # Prepare update data
+            update_data = {k: v for k, v in user_data.model_dump().items() if v is not None}
+            print(f"Update data: {update_data}")
+            
+            if not update_data:
+                return user
+            
+            # Handle password update separately if provided
+            if "new_password" in update_data:
+                # Remove password from update_data and handle it separately
+                new_password = update_data.pop("new_password")
+                
+                # Update other fields first if any
+                if update_data:
+                    updated_user = await UserRepository.update_user(user_id, update_data)
+                    if not updated_user:
+                        raise HTTPException(
+                            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                            detail="Failed to update user"
+                        )
+                
+                # Update password
+                updated_user = await UserRepository.update_password(user_id, new_password)
+                if not updated_user:
+                    raise HTTPException(
+                        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                        detail="Failed to update password"
+                    )
+            else:
+                # Update user without password change
+                updated_user = await UserRepository.update_user(user_id, update_data)
+                if not updated_user:
+                    raise HTTPException(
+                        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                        detail="Failed to update user"
+                    )
+            
+            print(f"Updated user: {updated_user}")
+            return updated_user
+        except Exception as e:
+            print(f"Error in admin_update_user: {e}")
+            raise e
+
     @staticmethod
-    async def update_user_role(user_id: int, role_data: UserUpdateRole) -> UserDict:
-        """Update user role"""
-        # Check if user exists
-        await UserService.get_user_by_id(user_id)
-        
-        # Update role
-        update_data = role_data.model_dump()
-        updated_user = await UserRepository.update_user(user_id, update_data)
-        if not updated_user:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="Failed to update user role"
-            )
-        return updated_user
-    
-    @staticmethod
-    async def update_user_admin(user_id: int, admin_data: UserUpdateAdmin, current_user_id: int) -> UserDict:
-        """Update user admin status"""
-        # Check if user exists
-        user = await UserService.get_user_by_id(user_id)
-        
-        # Prevent admin from removing their own admin privileges
-        if user_id == current_user_id and not admin_data.isAdmin:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Admin users cannot remove their own admin privileges"
-            )
-        
-        # Update admin status
-        update_data = admin_data.model_dump()
-        updated_user = await UserRepository.update_user(user_id, update_data)
-        if not updated_user:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="Failed to update user admin status"
-            )
-        return updated_user
-    
-    @staticmethod
-    async def update_user_activate(user_id: int, activate_data: UserUpdateActivate, current_user_id: int) -> UserDict:
-        """Update user activation status"""
-        # Check if user exists
-        user = await UserService.get_user_by_id(user_id)
-        
-        # Prevent admin from deactivating their own account
-        if user_id == current_user_id and not activate_data.activate:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Admin users cannot deactivate their own account"
-            )
-        
-        # Update activation status
-        update_data = activate_data.model_dump()
-        updated_user = await UserRepository.update_user(user_id, update_data)
-        if not updated_user:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="Failed to update user activation status"
-            )
-        return updated_user
-    
-    @staticmethod
-    async def update_password(
-        user_id: int, 
-        password_data: UserUpdatePassword
-    ) -> Dict[str, str]:
-        """Update user password"""
-        # Check if user exists
-        user = await UserService.get_user_by_id(user_id)
-        
-        # Verify old password
-        if not UserRepository.verify_password(
-            password_data.old_password, 
-            user["password"]
-        ):
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Incorrect password"
-            )
-        
-        # Update password
-        updated_user = await UserRepository.update_password(
-            user_id, 
-            password_data.new_password
-        )
-        if not updated_user:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="Failed to update password"
-            )
-        return {"message": "Password updated successfully"}
+    async def update_user(user_id: int, user_data: UserUpdate) -> UserDict:
+        """Update user information (for regular users) - unified method for name, email, and password"""
+        try:
+            # Check if user exists
+            user = await UserService.get_user_by_id(user_id)
+            print(f"Found user: {user}")
+            
+            # If email is changing, check if new email is already taken
+            if user_data.email and user_data.email != user["email"]:
+                existing_user = await UserRepository.get_user_by_email(user_data.email)
+                if existing_user:
+                    raise HTTPException(
+                        status_code=status.HTTP_400_BAD_REQUEST,
+                        detail="Email already registered"
+                    )
+            
+            # Handle password validation if both old and new password are provided
+            if user_data.new_password:
+                if not user_data.old_password:
+                    raise HTTPException(
+                        status_code=status.HTTP_400_BAD_REQUEST,
+                        detail="Old password is required when updating password"
+                    )
+                
+                # Verify old password
+                if not UserRepository.verify_password(user_data.old_password, user["password"]):
+                    raise HTTPException(
+                        status_code=status.HTTP_400_BAD_REQUEST,
+                        detail="Incorrect old password"
+                    )
+            
+            # Prepare update data (exclude password fields)
+            update_data = {}
+            if user_data.name is not None:
+                update_data["name"] = user_data.name
+            if user_data.email is not None:
+                update_data["email"] = user_data.email
+            
+            print(f"Update data: {update_data}")
+            
+            # Update basic fields if any
+            updated_user = user
+            if update_data:
+                updated_user = await UserRepository.update_user(user_id, update_data)
+                if not updated_user:
+                    raise HTTPException(
+                        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                        detail="Failed to update user"
+                    )
+            
+            # Update password if provided
+            if user_data.new_password:
+                updated_user = await UserRepository.update_password(user_id, user_data.new_password)
+                if not updated_user:
+                    raise HTTPException(
+                        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                        detail="Failed to update password"
+                    )
+            
+            print(f"Updated user: {updated_user}")
+            return updated_user
+        except Exception as e:
+            print(f"Error in update_user: {e}")
+            raise e
 
     @staticmethod
     async def delete_user(user_id: int, current_user_id: int) -> Dict[str, str]:
@@ -182,32 +202,3 @@ class UserService:
                 detail="Failed to delete user"
             )
         return {"message": "User deleted successfully"}
-
-    @staticmethod
-    async def admin_update_user_password(
-        user_id: int,
-        new_password: str,
-        current_user_id: int
-    ) -> Dict[str, str]:
-        """Admin update user password directly"""
-        # Check if user exists
-        user = await UserService.get_user_by_id(user_id)
-        
-        # Prevent admin from using this endpoint to change their own password
-        if user_id == current_user_id:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Admin should use the regular password update endpoint for their own password"
-            )
-        
-        # Update password
-        updated_user = await UserRepository.update_password(
-            user_id, 
-            new_password
-        )
-        if not updated_user:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="Failed to update password"
-            )
-        return {"message": "Password updated successfully"}
