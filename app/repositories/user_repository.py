@@ -51,10 +51,22 @@ class UserRepository:
     @staticmethod
     async def update_user(user_id: int, user_data: Dict) -> UserDict:
         """Update user information"""
-        # Ensure activate is boolean if present
-        if "activate" in user_data and not isinstance(user_data["activate"], bool):
-            user_data["activate"] = bool(user_data["activate"])
-        return await SupabaseService.update(UserRepository.TABLE_NAME, user_id, user_data)
+        # Make a copy of user_data to avoid modifying the original
+        update_data = user_data.copy()
+        
+        # If password is included in update, hash it
+        if "password" in update_data:
+            update_data["password"] = UserRepository._hash_password(update_data["password"])
+        
+        # Ensure activate is boolean if provided
+        if "activate" in update_data and not isinstance(update_data["activate"], bool):
+            update_data["activate"] = bool(update_data["activate"])
+            
+        # Ensure isAdmin is boolean if provided  
+        if "isAdmin" in update_data and not isinstance(update_data["isAdmin"], bool):
+            update_data["isAdmin"] = bool(update_data["isAdmin"])
+        
+        return await SupabaseService.update(UserRepository.TABLE_NAME, user_id, update_data)
     
     @staticmethod
     async def update_password(user_id: int, new_password: str) -> UserDict:

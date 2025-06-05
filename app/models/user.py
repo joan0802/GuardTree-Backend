@@ -18,28 +18,18 @@ class UserCreate(UserBase):
 class UserUpdate(BaseModel):
     name: Optional[str] = None
     email: Optional[EmailStr] = None
+    old_password: Optional[str] = None
+    new_password: Optional[str] = None
 
 
-class UserUpdatePassword(BaseModel):
-    old_password: str
-    new_password: str
-
-
-class UserUpdateRole(BaseModel):
-    role: str
-
-
-class UserUpdateActivate(BaseModel):
-    activate: bool
-
-
-class UserUpdateAdmin(BaseModel):
-    isAdmin: bool
-
-
-class AdminUpdateUserPassword(BaseModel):
-    new_password: str
-
+class AdminUserUpdate(BaseModel):
+    """Admin model for updating user information - includes all possible fields"""
+    name: Optional[str] = None
+    email: Optional[EmailStr] = None
+    role: Optional[str] = None
+    isAdmin: Optional[bool] = None
+    activate: Optional[bool] = None
+    new_password: Optional[str] = None  # Admin can directly set password without old password
 
 class User(UserBase):
     id: int

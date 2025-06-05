@@ -2,8 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from typing import List, Dict, Any
 
 from app.models.user import (
-    UserCreate, UserUpdate, User, UserUpdatePassword, UserUpdateRole,
-    UserUpdateActivate, UserUpdateAdmin, AdminUpdateUserPassword
+    UserCreate, UserUpdate, User, AdminUserUpdate
 )
 from app.services.user_service import UserService
 from app.core.auth import get_current_user, get_current_admin_user
@@ -44,34 +43,10 @@ async def update_current_user(
     current_user: Dict[str, Any] = Depends(get_current_user)
 ):
     """
-    Update current user's information
+    Update current user's information - unified endpoint for name, email, and password
+    Can update: name, email, password (requires old_password and new_password)
     """
     return await UserService.update_user(current_user["id"], user_data)
-
-@router.put("/me/password")
-async def update_current_user_password(
-    password_data: UserUpdatePassword,
-    current_user: Dict[str, Any] = Depends(get_current_user)
-):
-    """
-    Update current user's password
-    """
-    return await UserService.update_password(current_user["id"], password_data)
-
-@router.put("/{user_id}/admin-password")
-async def admin_update_user_password(
-    user_id: int,
-    password_data: AdminUpdateUserPassword,
-    current_user: Dict[str, Any] = Depends(get_current_admin_user)
-):
-    """
-    Update a user's password directly (admin only)
-    """
-    return await UserService.admin_update_user_password(
-        user_id=user_id,
-        new_password=password_data.new_password,
-        current_user_id=current_user["id"]
-    )
 
 # Admin routes with parameters - put after specific paths
 @router.get("/{user_id}", response_model=User)
@@ -84,49 +59,17 @@ async def get_user(
     """
     return await UserService.get_user_by_id(user_id)
 
-@router.put("/{user_id}/info", response_model=User)
-async def update_user_info(
+@router.put("/{user_id}", response_model=User)
+async def admin_update_user(
     user_id: int,
-    user_data: UserUpdate,
+    user_data: AdminUserUpdate,
     current_user: Dict[str, Any] = Depends(get_current_admin_user)
 ):
     """
-    Update a user's basic information (admin only)
+    Admin update user information - unified endpoint for all user updates
+    Can update: name, email, role, isAdmin, activate, new_password
     """
-    return await UserService.update_user(user_id, user_data)
-
-@router.put("/{user_id}/role", response_model=User)
-async def update_user_role(
-    user_id: int,
-    role_data: UserUpdateRole,
-    current_user: Dict[str, Any] = Depends(get_current_admin_user)
-):
-    """
-    Update a user's role (admin only)
-    """
-    return await UserService.update_user_role(user_id, role_data)
-
-@router.put("/{user_id}/admin", response_model=User)
-async def update_user_admin(
-    user_id: int,
-    admin_data: UserUpdateAdmin,
-    current_user: Dict[str, Any] = Depends(get_current_admin_user)
-):
-    """
-    Update a user's admin status (admin only)
-    """
-    return await UserService.update_user_admin(user_id, admin_data, current_user["id"])
-
-@router.put("/{user_id}/activate", response_model=User)
-async def update_user_activate(
-    user_id: int,
-    activate_data: UserUpdateActivate,
-    current_user: Dict[str, Any] = Depends(get_current_admin_user)
-):
-    """
-    Update a user's activation status (admin only)
-    """
-    return await UserService.update_user_activate(user_id, activate_data, current_user["id"])
+    return await UserService.admin_update_user(user_id, user_data, current_user["id"])
 
 @router.delete("/{user_id}")
 async def delete_user(
