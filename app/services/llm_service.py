@@ -28,17 +28,17 @@ class LLMService:
         return AnalysisResult(**result_dict)
     
     @staticmethod
-    async def analyze_case(case_id: int, year: str, question_field: str):
-        form_data = await LLMRepository.get_question_value(case_id, year, question_field)
+    async def analyze_case(case_id: int, year: int, form_type: str):
+        form_data = await LLMRepository.get_question_value(case_id, year, form_type)
         if not form_data:
             raise ValueError("Form not found")
 
-        form_id = await LLMRepository.get_question_value(case_id, year, "id")
-        existing_result = await LLMService.get_analysis_result(case_id, year, question_field)
+        form_id = await LLMRepository.get_form_id(case_id, year, form_type)
+        existing_result = await LLMService.get_analysis_result(case_id, year, form_type)
         if existing_result:
             return existing_result
 
-        prompt = LLMPrompt.generate_analysis_prompt(form_data)
+        prompt = LLMPrompt.generate_analysis_prompt(form_data, form_type)
         response_text = LLMService.run_llm(prompt)
         analysis_result = LLMService.parse_response_to_json(response_text)
 
@@ -46,22 +46,21 @@ class LLMService:
             filled_form_id=form_id,
             suggestions=analysis_result.suggestions.dict(),
             summary=analysis_result.summary.dict(),
-            question_field=question_field
+            form_type=form_type
         )
 
         return analysis_result.dict()
     
     @staticmethod
-    async def get_analysis_result(case_id: int, year: str, question_field: str):
-        form_data = await LLMRepository.get_question_value(case_id, year, question_field)
+    async def get_analysis_result(case_id: int, year: int, form_type: str):
+        form_data = await LLMRepository.get_question_value(case_id, year, form_type)
         if not form_data:
             raise ValueError("Form not found")
 
-        form_id = await LLMRepository.get_question_value(case_id, year, "id")
+        form_id = await LLMRepository.get_form_id(case_id, year, form_type)
 
         existing_result = await LLMRepository.get_analysis_result(
             filled_form_id=form_id,
-            question_field=question_field
         )
         if existing_result:
             return existing_result.dict()

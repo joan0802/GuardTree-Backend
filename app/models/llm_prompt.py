@@ -1,11 +1,12 @@
 class LLMPrompt:
     @staticmethod
-    def generate_analysis_prompt(form_data: str) -> str:
+    def generate_analysis_prompt(form_data: str, form_type: str) -> str:
+        form_activity = LLMPrompt.get_form_activity(form_type)
         return f"""
 你是一個繁體中文專家系統，請根據以下個案表單資料，分析並產出以下格式的 JSON 結果：
 
-其中，activity 代表活動內容，item 代表項目，subitem 代表細項（若為null 可忽略），core_area 代表這份表單所對應代的核心能力領域，
-support type 為教保員評估服務對象在這個項目的分數：4 代表需完全肢體協助；3 代表需部份身體協助； 2 代表需示範/口頭/手勢提示；1 代表須監督陪同；0 代表不須協助；null或None 代表不適用（可忽略此項評分）。
+其中，activity 代表活動內容，item 代表項目，subitem 代表細項，core_area 代表這份表單所對應代的核心能力領域，
+support type 為教保員評估服務對象在這個項目的分數：4 代表需完全肢體協助；3 代表需部份身體協助； 2 代表需示範/口頭/手勢提示；1 代表須監督陪同；0 代表不須協助；-1 代表不適用（可忽略該細項）。
 
 請輸出以下 JSON 格式：
 {{
@@ -16,7 +17,7 @@ support type 為教保員評估服務對象在這個項目的分數：4 代表�
     "priority_item": "請依據資料內容，判斷目前最急迫、最需要改善的活動項目，並說明原因。"
 }},
 "suggestions": {{
-    "strategy": "請根據上述資料，提供協助服務對象改善日常生活功能的具體策略建議。"
+    "strategy": "請根據上述資料，**依據{form_activity}列點敘述**，提供協助服務對象改善日常生活功能的具體策略建議。"
 }}
 }}
 
@@ -28,3 +29,78 @@ support type 為教保員評估服務對象在這個項目的分數：4 代表�
 表單資料：
 {form_data}
 """
+    @staticmethod
+    def get_form_activity(form_type: str) -> str:
+        if (form_type == "A"):
+            return f""" 
+1. 使用廁所
+2. 處理衣物
+3. 準備食物
+4. 進食
+5. 料理家事/打掃房間
+6. 穿衣
+7. 梳洗沐浴/個人衛生
+8. 使用家電
+"""
+        elif (form_type == "B"):
+            return f""" 
+1. 往返社區內各地
+2. 社區中參與娛樂/休閒
+3. 社區中使用公共設施與服務
+4. 拜訪親朋好友
+5. 參與喜歡的社區活動
+6. 選購物品與服務
+7. 與社區居民互動
+8. 使用公共大樓和設施
+"""
+        elif (form_type == "C"):
+            return f"""
+1. 在學習活動與他人互動
+2. 參與教育/訓練決策
+3. 學習並使用問題解決策略
+4. 操作科技工具學習
+5. 使用教育/訓練設施
+6. 學習基本認知
+7. 學習健康與體育知能
+8. 學習自我決策技能
+9. 學習自我管理策略
+"""
+        elif (form_type == "D"):
+            return f""" 
+1. 得到/適應工作
+2. 學習並使用特定的工作技能
+3. 在可接受的速度下完成工作相關任務
+4. 在可接受的品質內完成工作相關任務
+"""
+        elif (form_type == "E"):
+            return f""" 
+1. 服用藥物與用藥安全
+2. 避免危及自身健康與安全
+3. 取得健康照顧服務
+4. 隨意行走與移動
+5. 學習如何取得緊急服務
+6. 維持飲食均衡
+7. 維持身體健康、身材適中
+8. 維持情緒健康
+"""
+        elif (form_type == "F"):
+            return f""" 
+1. 與人合宜的互動溝通
+2. 與他人一起參與休活動
+3. 建立並維持友誼
+4. 與他人溝通個人需求
+5. 使用適當的社交技巧
+6. 擁有親密戀情
+"""
+        elif (form_type == "G"):
+            return f""" 
+1. 為自己與他人發聲
+2. 處理個人的金錢財物
+3. 保護自己免於被利用
+4. 行使自己的法律責任
+5. 歸屬或參與自我倡議/支持組織
+6. 取得法律服務
+7. 選擇與決定
+"""
+        else:
+            raise ValueError("Unsupported form type")
