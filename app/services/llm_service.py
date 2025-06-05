@@ -38,7 +38,7 @@ class LLMService:
         if existing_result:
             return existing_result
 
-        prompt = LLMPrompt.generate_analysis_prompt(form_data)
+        prompt = LLMPrompt.generate_analysis_prompt(form_data, form_type)
         response_text = LLMService.run_llm(prompt)
         analysis_result = LLMService.parse_response_to_json(response_text)
 
