@@ -65,4 +65,4 @@ class LLMService:
         if existing_result:
             return existing_result.dict()
 
-        return None
+        raise ValueError("Analysis result doesn't exist")
