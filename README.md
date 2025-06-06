@@ -10,6 +10,7 @@ A FastAPI-based backend using Supabase as the database.
    SUPABASE_URL=your_supabase_url
    SUPABASE_KEY=your_supabase_service_role_key
    JWT_SECRET_KEY=your_secret_key
+   GEMINI_API_KEY=your_LLM_api_key
    ```
    
    > **Important**: The application requires these environment variables to connect to Supabase. Make sure to create the `.env` file before starting the Docker container.
